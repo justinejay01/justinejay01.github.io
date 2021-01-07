@@ -108,6 +108,10 @@
               &nbsp;Console.Write("Enter a number: "); <br>
               &nbsp;inp = Convert.ToInt32(Console.ReadLine());<br>
               &nbsp;num.Add(inp);<br><br>
+              &nbsp;if (inp % 2 == 0) <br>
+              &nbsp;&nbsp;even++; <br>
+              &nbsp;else <br>
+              &nbsp;&nbsp;odd++; <br><br>
               &nbsp;if (!Convert.ToString(inp).Contains("-")) <br>
               &nbsp;&nbsp;continue; <br>
               &nbsp;else <br>
