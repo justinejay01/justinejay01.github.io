@@ -84,9 +84,9 @@
           </div>
         </div>
 
-        <br>
+        <button class="btn btn-block btn-sm btn-primary my-2" id="btnWhile" onclick="showHideCode(this.id);">Show</button>
 
-        <div class="card bg-light text-dark">
+        <div class="card bg-light text-dark d-none" id="divWhile">
           <div class="card-body">
             <code>
               int ii = 0, inp, odd = 0, even = 0; <br>
@@ -130,9 +130,9 @@
           </div>
         </div>
 
-        <br>
+        <button class="btn btn-block btn-sm btn-primary my-2" id="btnNested" onclick="showHideCode(this.id);">Show</button>
 
-        <div class="card bg-light text-dark">
+        <div class="card bg-light text-dark d-none" id="divNested">
           <div class="card-body">
             <code>
               int i, j; <br>
@@ -166,9 +166,9 @@
           </div>
         </div>
 
-        <br>
+        <button class="btn btn-block btn-sm btn-primary my-2" id="btnDoWhile" onclick="showHideCode(this.id);">Show</button>
 
-        <div class="card bg-light text-dark">
+        <div class="card bg-light text-dark d-none" id="divDoWhile">
           <div class="card-body">
             <code>
             int i = 1; <br>
@@ -241,6 +241,38 @@
   <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.5.3/js/bootstrap.bundle.min.js"></script>
 
+  <script>
+    function showHideCode(btn) {
+      if (btn == 'btnWhile') {
+        var btnW = document.getElementById(btn);
+        var div = document.getElementById('divWhile');
+        div.classList.toggle('d-none');
+
+        if (div.classList.contains('d-none')) 
+          btnW.innerText = "Show";
+        else
+          btnW.innerText = "Hide";
+      } else if (btn == 'btnNested') {
+        var btnN = document.getElementById(btn);
+        var div = document.getElementById('divNested');
+        div.classList.toggle('d-none');
+
+        if (div.classList.contains('d-none')) 
+          btnN.innerText = "Show";
+        else
+          btnN.innerText = "Hide";
+      } else if (btn == 'btnDoWhile') {
+        var btnDW = document.getElementById(btn);
+        var div = document.getElementById('divDoWhile');
+        div.classList.toggle('d-none');
+
+        if (div.classList.contains('d-none')) 
+          btnDW.innerText = "Show";
+        else
+          btnDW.innerText = "Hide";
+      }
+    }
+  </script>
 </body>
 
 </html>
