@@ -1,0 +1,269 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta name="description" content="Performance Task for Lesson 7">
+  <meta name="author" content="SimpingTech">
+
+  <title>Performance Task for Lesson 7 - SimpingTech</title>
+
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.5.3/css/bootstrap.min.css" rel="stylesheet">
+
+  <style>
+    body {
+      padding-top: 56px;
+    }
+  </style>
+
+</head>
+
+<body>
+
+  <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
+    <div class="container">
+      <a class="navbar-brand" href="/">SimpingTech</a>
+      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarResponsive">
+        <ul class="navbar-nav ml-auto">
+          <li class="nav-item">
+            <a class="nav-link" href="#">Home</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#">Services</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#">About</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#">Contact</a>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+
+  <div class="container">
+
+    <div class="row">
+
+      <div class="col-lg-8">
+
+        <div class="alert alert-dark mt-3" role="alert">
+          You are at: <a href="/">Home</a> / <a href="/programs">Programs</a> / <a href="/programs/csharp">C#</a> / Performance Task for Lesson 7
+        </div>
+
+        <hr>
+
+        <h1>Performance Task for Lesson 7</h1>
+
+        <hr>
+
+        <p>Create a program that asks the user to input 2 numbers (num1, num2) and then select Operator to perform( +, -, * and / ). If the user entered ‘#’ , then the program terminates. The program will then perform the task.</p>
+        <p><b>Note: </b>Use procedure with 3 parameters, do-while loop, and switch-case statements.</p>
+        <div class="card bg-light text-dark">
+          <div class="card-body">
+            <code>
+                Enter number: 1<br>
+                Enter number: 2<br>
+                OPERATORS<br>
+                [+] PLUS<br>
+                [-] MINUS<br>
+                [*] MULTIPLY<br>
+                [/] DIVIDE<br>
+                [#] EXIT<br>
+                Enter operator: +<br>
+                <br>
+                1 + 2 = 3<br>
+                <br>
+                Enter number: 1<br>
+                Enter number: 2<br>
+                OPERATORS<br>
+                [+] PLUS<br>
+                [-] MINUS<br>
+                [*] MULTIPLY<br>
+                [/] DIVIDE<br>
+                [#] EXIT<br>
+                Enter operator: -<br>
+                <br>
+                1 - 2 = -1<br>
+                <br>
+                Enter number: 1<br>
+                Enter number: 2<br>
+                OPERATORS<br>
+                [+] PLUS<br>
+                [-] MINUS<br>
+                [*] MULTIPLY<br>
+                [/] DIVIDE<br>
+                [#] EXIT<br>
+                Enter operator: *<br>
+                <br>
+                1 * 2 = 2<br>
+                <br>
+                Enter number: 1<br>
+                Enter number: 2<br>
+                OPERATORS<br>
+                [+] PLUS<br>
+                [-] MINUS<br>
+                [*] MULTIPLY<br>
+                [/] DIVIDE<br>
+                [#] EXIT<br>
+                Enter operator: /<br>
+                <br>
+                1 / 2 = 0<br>
+                <br>
+                Enter number: 1<br>
+                Enter number: 2<br>
+                OPERATORS<br>
+                [+] PLUS<br>
+                [-] MINUS<br>
+                [*] MULTIPLY<br>
+                [/] DIVIDE<br>
+                [#] EXIT<br>
+                Enter operator: #<br>
+                <br>
+                End
+            </code>
+          </div>
+        </div>
+
+        <button class="btn btn-block btn-sm btn-primary my-2" id="btnCalc" onclick="showHideCode(this.id);">Show</button>
+
+        <div class="card bg-light text-dark d-none" id="divCalc">
+          <div class="card-body">
+            <code>
+                public static void Main(string[] args) <br>
+                { <br>
+                &nbsp;do <br>
+                &nbsp;{ <br>
+                &nbsp;&nbsp;int num1, num2; <br>
+                &nbsp;&nbsp;char op; <br>
+                &nbsp;&nbsp;Console.Write("Enter number: "); <br>
+                &nbsp;&nbsp;num1 = Convert.ToInt32(Console.ReadLine()); <br>
+                &nbsp;&nbsp;Console.Write("Enter number: "); <br>
+                &nbsp;&nbsp;num2 = Convert.ToInt32(Console.ReadLine()); <br>
+                &nbsp;&nbsp;Console.WriteLine("OPERATORS"); <br>
+                &nbsp;&nbsp;Console.WriteLine("[+] PLUS"); <br>
+                &nbsp;&nbsp;Console.WriteLine("[-] MINUS"); <br>
+                &nbsp;&nbsp;Console.WriteLine("[*] MULTIPLY"); <br>
+                &nbsp;&nbsp;Console.WriteLine("[/] DIVIDE"); <br>
+                &nbsp;&nbsp;Console.WriteLine("[#] EXIT"); <br>
+                &nbsp;&nbsp;Console.Write("Enter operator: "); <br>
+                &nbsp;&nbsp;op = Convert.ToChar(Console.ReadLine()); <br>
+                &nbsp;&nbsp;Console.WriteLine(); <br>
+                <br>
+                &nbsp;&nbsp;if (op != '#') <br>
+                &nbsp;&nbsp;{ <br>
+                &nbsp;&nbsp;&nbsp;GetAnswer(num1, num2, op); <br>
+                &nbsp;&nbsp;&nbsp;continue; <br>
+                &nbsp;&nbsp;} <br>
+                &nbsp;&nbsp;else <br>
+                &nbsp;&nbsp;{ <br>
+                &nbsp;&nbsp;&nbsp;Console.Write("End"); <br>
+                &nbsp;&nbsp;&nbsp;Console.ReadLine(); <br>
+                &nbsp;&nbsp;&nbsp;break; <br>
+                &nbsp;&nbsp;} <br>
+                &nbsp;} while (true); <br>
+                } <br>
+                <br>
+                public static void GetAnswer(int num1, int num2, char op) <br>
+                { <br>
+                &nbsp;switch (op) <br>
+                &nbsp;{ <br>
+                &nbsp;&nbsp;case '+': <br>
+                &nbsp;&nbsp;&nbsp;Console.WriteLine("{0} {1} {2} = {3}", num1, op, num2, num1 + num2); <br>
+                &nbsp;&nbsp;&nbsp;break; <br>
+                &nbsp;&nbsp;case '-': <br>
+                &nbsp;&nbsp;&nbsp;Console.WriteLine("{0} {1} {2} = {3}", num1, op, num2, num1 - num2); <br>
+                &nbsp;&nbsp;&nbsp;break; <br>
+                &nbsp;&nbsp;case '*': <br>
+                &nbsp;&nbsp;&nbsp;Console.WriteLine("{0} {1} {2} = {3}", num1, op, num2, num1 * num2); <br>
+                &nbsp;&nbsp;&nbsp;break; <br>
+                &nbsp;&nbsp;case '/': <br>
+                &nbsp;&nbsp;&nbsp;Console.WriteLine("{0} {1} {2} = {3}", num1, op, num2, num1 / num2); <br>
+                &nbsp;&nbsp;&nbsp;break; <br>
+                &nbsp;&nbsp;default: <br>
+                &nbsp;&nbsp;&nbsp;Console.WriteLine("Invalid input!"); <br>
+                &nbsp;&nbsp;&nbsp;break; <br>
+                &nbsp;} <br>
+                &nbsp;Console.WriteLine(); <br>
+                } <br>
+            </code>
+          </div>
+        </div>
+
+        <hr>
+
+        <div class="card my-4">
+          <h5 class="card-header">Leave a Comment:</h5>
+          <div class="card-body">
+            <form>
+              <div class="form-group">
+                <textarea class="form-control" rows="3" disabled></textarea>
+              </div>
+              <button type="submit" class="btn btn-primary" disabled>Submit</button>
+            </form>
+          </div>
+        </div>
+
+        <p>Comment is temporarily disable.</p>
+
+      </div>
+
+      <div class="col-md-4">
+
+        <div class="card my-4">
+          <h5 class="card-header">Search</h5>
+          <div class="card-body">
+            <div class="input-group">
+              <input type="text" class="form-control" placeholder="Search for..." disabled>
+              <span class="input-group-append">
+                <button class="btn btn-secondary" type="button" disabled>Go!</button>
+              </span>
+            </div>
+          </div>
+        </div>
+
+        <div class="card my-4">
+          <h5 class="card-header">About Me</h5>
+          <div class="card-body">
+            Secret.
+          </div>
+        </div>
+
+      </div>
+
+    </div>
+
+  </div>
+  
+  <footer class="py-4 bg-dark">
+    <div class="container">
+      <p class="m-0 text-center text-white">Copyright 2021 &copy; <a class="text-white" href="/">SimpingTech</a></p>
+    </div>
+  </footer>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.5.3/js/bootstrap.bundle.min.js"></script>
+
+  <script>
+    function showHideCode(btn) {
+      if (btn == 'btnCalc') {
+        var btnC = document.getElementById(btn);
+        var div = document.getElementById('divCalc');
+        div.classList.toggle('d-none');
+
+        if (div.classList.contains('d-none')) 
+          btnC.innerText = "Show";
+        else
+          btnC.innerText = "Hide";
+      }
+    }
+  </script>
+</body>
+
+</html>
