@@ -1,0 +1,239 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta name="description" content="Procedure & Function Exercise">
+  <meta name="author" content="SimpingTech">
+
+  <title>Procedure & Function Exercise - SimpingTech</title>
+
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.5.3/css/bootstrap.min.css" rel="stylesheet">
+
+  <style>
+    body {
+      padding-top: 56px;
+    }
+  </style>
+
+</head>
+
+<body>
+
+  <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
+    <div class="container">
+      <a class="navbar-brand" href="/">SimpingTech</a>
+      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarResponsive">
+        <ul class="navbar-nav ml-auto">
+          <li class="nav-item">
+            <a class="nav-link" href="#">Home</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#">Services</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#">About</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#">Contact</a>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+
+  <div class="container">
+
+    <div class="row">
+
+      <div class="col-lg-8">
+
+        <div class="alert alert-dark mt-3" role="alert">
+          You are at: <a href="/">Home</a> / <a href="/programs">Programs</a> / <a href="/programs/csharp">C#</a> / Procedure & Function Exercise
+        </div>
+
+        <hr>
+
+        <h1>Procedure & Function Exercise</h1>
+
+        <hr>
+
+        <h4>Exercise: <small>Take user input for arithmetic operation, and create GetAnswer method. Method must have 3 parameters.</small></h4>
+
+        <div class="card bg-light text-dark">
+            <div class="card-body">
+              <code>
+                Enter number: 11 <br>
+                Enter number: 26 <br>
+                Enter operator (+, -, *, /): + <br>
+                <br>
+                11 + 26 = 37 <br>
+              </code>
+            </div>
+          </div>
+
+        <hr>
+
+        <h5>Procedure</h5>
+        <p>In programming, <b>procedure</b> is a set of instructions which takes input and performs certain task, but does not return a value. In C#, it uses <b>void</b> method.</p>
+        
+        <div class="card bg-light text-dark">
+          <div class="card-body">
+            <code>
+                public static void Main(string[] args) <br>
+                { <br>
+                &nbsp;int x, y; <br>
+                &nbsp;char z; <br>
+                &nbsp;Console.Write("Enter number: "); <br>
+                &nbsp;x = Convert.ToInt32(Console.ReadLine()); <br>
+                &nbsp;Console.Write("Enter number: "); <br>
+                &nbsp;y = Convert.ToInt32(Console.ReadLine()); <br>
+                &nbsp;Console.Write("Enter operator (+, -, *, /): "); <br>
+                &nbsp;z = Convert.ToChar(Console.ReadLine()); <br>
+                &nbsp;Console.WriteLine(); <br>
+                &nbsp;GetAnswer(x, y, z); <br>
+                &nbsp;Console.ReadLine(); <br>
+                } <br>
+                <br>
+                public static void GetAnswer(int x, int y, char z) <br>
+                { <br>
+                &nbsp;switch (z) <br>
+                &nbsp;{ <br>
+                &nbsp;&nbsp;case '+': <br>
+                &nbsp;&nbsp;&nbsp;Console.WriteLine("{0} {1} {2} = {3}", x, z, y, x + y); <br>
+                &nbsp;&nbsp;&nbsp;break; <br>
+                &nbsp;&nbsp;case '-': <br>
+                &nbsp;&nbsp;&nbsp;Console.WriteLine("{0} {1} {2} = {3}", x, z, y, x - y); <br>
+                &nbsp;&nbsp;&nbsp;break; <br>
+                &nbsp;&nbsp;case '*': <br>
+                &nbsp;&nbsp;&nbsp;Console.WriteLine("{0} {1} {2} = {3}", x, z, y, x * y); <br>
+                &nbsp;&nbsp;&nbsp;break; <br>
+                &nbsp;&nbsp;case '/': <br>
+                &nbsp;&nbsp;&nbsp;Console.WriteLine("{0} {1} {2} = {3}", x, z, y, x / y); <br>
+                &nbsp;&nbsp;&nbsp;break; <br>
+                &nbsp;&nbsp;default: <br>
+                &nbsp;&nbsp;&nbsp;Console.WriteLine("Invalid input!"); <br>
+                &nbsp;&nbsp;&nbsp;break; <br>
+                &nbsp;} <br>
+                } <br>
+            </code>
+          </div>
+        </div>
+
+        <hr>
+
+        <h5>Function</h5>
+        <p>In programming, <b>function</b> is also a set of instructions which takes input, performs certain task, and returns a value. In C#, it uses any value-returning functions.</p>
+        
+        <div class="card bg-light text-dark">
+          <div class="card-body">
+            <code>
+                public static void Main(string[] args) <br>
+                { <br>
+                &nbsp;char w; <br>
+                &nbsp;int x, y, z; <br>
+                &nbsp;Console.Write("Enter number: "); <br>
+                &nbsp;x = Convert.ToInt32(Console.ReadLine()); <br>
+                &nbsp;Console.Write("Enter number: "); <br>
+                &nbsp;y = Convert.ToInt32(Console.ReadLine()); <br>
+                &nbsp;Console.Write("Enter operator (+, -, *, /): "); <br>
+                &nbsp;w = Convert.ToChar(Console.ReadLine()); <br>
+                &nbsp;z = GetAnswer(w, x, y); <br>
+                &nbsp;Console.WriteLine(); <br>
+                &nbsp;<br>
+                &nbsp;if (w == '+' || w == '-' || w == '*' || w == '/') <br>
+                &nbsp;&nbsp;Console.WriteLine("{0} {1} {2} = {3}", x, w, y, z); <br>
+                &nbsp;else <br>
+                &nbsp;&nbsp;Console.WriteLine("Invalid input!"); <br>
+                &nbsp;<br>
+                &nbsp;Console.ReadLine(); <br>
+                } <br>
+                <br>
+                public static int GetAnswer(char w, int x, int y) <br>
+                { <br>
+                &nbsp;int z = 0; <br>
+                &nbsp;switch (w) <br>
+                &nbsp;{ <br>
+                &nbsp;&nbsp;case '+': <br>
+                &nbsp;&nbsp;&nbsp;z = x + y; <br>
+                &nbsp;&nbsp;&nbsp;break; <br>
+                &nbsp;&nbsp;case '-': <br>
+                &nbsp;&nbsp;&nbsp;z = x - y; <br>
+                &nbsp;&nbsp;&nbsp;break; <br>
+                &nbsp;&nbsp;case '*': <br>
+                &nbsp;&nbsp;&nbsp;z = x * y; <br>
+                &nbsp;&nbsp;&nbsp;break; <br>
+                &nbsp;&nbsp;case '/': <br>
+                &nbsp;&nbsp;&nbsp;z = x / y; <br>
+                &nbsp;&nbsp;&nbsp;break; <br>
+                &nbsp;&nbsp;default: <br>
+                &nbsp;&nbsp;&nbsp;break; <br>
+                &nbsp;} <br>
+                &nbsp;return z; <br>
+                } <br>
+            </code>
+          </div>
+        </div>
+
+        <hr>
+
+        <div class="card my-4">
+          <h5 class="card-header">Leave a Comment:</h5>
+          <div class="card-body">
+            <form>
+              <div class="form-group">
+                <textarea class="form-control" rows="3" disabled></textarea>
+              </div>
+              <button type="submit" class="btn btn-primary" disabled>Submit</button>
+            </form>
+          </div>
+        </div>
+
+        <p>Comment is temporarily disable.</p>
+
+      </div>
+
+      <div class="col-md-4">
+
+        <div class="card my-4">
+          <h5 class="card-header">Search</h5>
+          <div class="card-body">
+            <div class="input-group">
+              <input type="text" class="form-control" placeholder="Search for..." disabled>
+              <span class="input-group-append">
+                <button class="btn btn-secondary" type="button" disabled>Go!</button>
+              </span>
+            </div>
+          </div>
+        </div>
+
+        <div class="card my-4">
+          <h5 class="card-header">About Me</h5>
+          <div class="card-body">
+            Secret.
+          </div>
+        </div>
+
+      </div>
+
+    </div>
+
+  </div>
+  
+  <footer class="py-4 bg-dark">
+    <div class="container">
+      <p class="m-0 text-center text-white">Copyright 2021 &copy; <a class="text-white" href="/">SimpingTech</a></p>
+    </div>
+  </footer>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.5.3/js/bootstrap.bundle.min.js"></script>
+
+</body>
+
+</html>
