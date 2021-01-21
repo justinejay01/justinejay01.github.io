@@ -51,7 +51,3 @@ app.get('/vt', function(req,res){
     else res.send('True');
   });
 });
-
-
-  });
-});
