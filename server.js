@@ -1,6 +1,5 @@
 const fs = require('fs');
 const path = require('path');
-
 const http = require('http');
 const express = require('express');
 const app = express();
@@ -17,21 +16,27 @@ var portAccess = process.env.PORT || 8080;
 app.use(parser.json());
 app.use(parser.urlencoded({ extended: false }));
 
-//var server = app
 const io = require('socket.io').listen(server);
 server.listen(portAccess);
 
 app.get('/', function(req,res) {
   res.sendFile('/index.html', {root: __dirname});
-  io.on("connection", function(socket) {
-
-    console.log('socket connected');
-
-  });
 });
 
-io.on("connection", function(socket) {
-  console.log("Connected!");
+app.get('/programs', function(req,res) {
+  res.sendFile('/programs/index.html', {root: __dirname});
+});
+
+app.get('/programs/csharp', function(req,res) {
+  res.sendFile('/programs/csharp/index.html', {root: __dirname});
+});
+
+app.get('/programs/csharp/lesson-6', function(req,res) {
+  res.sendFile('/programs/csharp/lesson-6.html', {root: __dirname});
+});
+
+app.get('/programs/csharp/lesson-7', function(req,res) {
+  res.sendFile('/programs/csharp/lesson-7.html', {root: __dirname});
 });
 
 app.get('/t', function(req,res){
