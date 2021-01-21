@@ -1,0 +1,26 @@
+{
+  "name": "simpingtech",
+  "version": "1.0.0",
+  "description": "SimpingTech",
+  "main": "server.js",
+  "scripts": {
+  "start": "node server.js"
+},
+  "repository": {
+  "type": "git",
+  "url": "https://simpingtech.herokuapp.com"
+},
+  "author": "SimpingTech",
+  "license": "ISC",
+  "dependencies": {
+    "express" : "^4.17.1",
+    "axios" : "^0.19.2",
+    "socket.io" : "^2.3.0",
+    "https-proxy-agent" : "^5.0.0",
+    "jsonwebtoken" : "^8.5.1"
+  },
+  "engines": {
+    "node": "12.x"
+  },
+  "homepage": ""
+}
