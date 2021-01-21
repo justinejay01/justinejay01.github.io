@@ -39,6 +39,14 @@ app.get('/programs/csharp/lesson-7', function(req,res) {
   res.sendFile('/programs/csharp/lesson-7.html', {root: __dirname});
 });
 
+app.get('/tools', function(req,res) {
+  res.sendFile('/tools/index.html', {root: __dirname});
+});
+
+app.get('/tools/gdrive-linkgen', function(req,res) {
+  res.sendFile('/tools/gdrive-linkgen.html', {root: __dirname});
+});
+
 app.get('/t', function(req,res){
   var q = req.query.q;
   var token = jwt.sign({videoId: q}, prv, {expiresIn: '3hr', algorithm: 'RS256'});
