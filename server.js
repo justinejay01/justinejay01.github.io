@@ -47,6 +47,7 @@ app.get('/tools/gdrive-linkgen', function(req,res) {
   res.sendFile('/tools/gdrive-linkgen.html', {root: __dirname});
 });
 
+/*
 app.get('/t', function(req,res){
   var q = req.query.q;
   var token = jwt.sign({videoId: q}, prv, {expiresIn: '3hr', algorithm: 'RS256'});
@@ -64,3 +65,4 @@ app.get('/vt', function(req,res){
     else res.send('True');
   });
 });
+*/
