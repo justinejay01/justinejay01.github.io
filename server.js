@@ -86,7 +86,7 @@ app.post('/auth/login', function(req,res) {
         req.session.loggedin = true;
         req.session.username = uname;
       }
-      client.end();
+      client.release(true);
     });
   } else {
     response.send('Please enter username and/or password!');
