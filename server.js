@@ -47,6 +47,17 @@ app.get('/tools/gdrive-linkgen', function(req,res) {
   res.sendFile('/tools/gdrive-linkgen.html', {root: __dirname});
 });
 
+app.get('/auth/login', function(req,res) {
+  res.sendFile('/login.html', {root: __dirname});
+});
+
+app.post('/auth/login', function(req,res) {
+  var uname = res.uname;
+  var pword = res.pword;
+
+  res.send("Sucess! Your username is " + uname + ".");
+});
+
 /*
 app.get('/t', function(req,res){
   var q = req.query.q;
