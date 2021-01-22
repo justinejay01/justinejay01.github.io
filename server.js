@@ -1,26 +1,39 @@
-const fs = require('fs');
+//const http = require('http');
+//const axios = require('axios');
+//const HttpsProxyAgent = require('https-proxy-agent');
+//const jwt = require('jsonwebtoken');
 const path = require('path');
-const http = require('http');
+const mysql = require('mysql');
+const parser = require('body-parser');
 const express = require('express');
+const session = require('express-session');
 const app = express();
 
-const server = http.createServer(app);
+//const server = http.createServer(app);
 
-const axios = require('axios');
-const HttpsProxyAgent = require('https-proxy-agent');
-const parser = require('body-parser');
-const jwt = require('jsonwebtoken');
+var con = mysql.createConnection({
+	host     : 'fdb30.awardspace.net',
+	user     : '3719976_simpingtech',
+	password : 'Justinejay2001@',
+	database : '3719976_simpingtech'
+});
 
-var portAccess = process.env.PORT || 8080;
+var portaccess = process.env.PORT || 8080;
 
+app.use(session({
+	secret: 'secret',
+	resave: true,
+	saveUninitialized: true
+}));
 app.use(parser.json());
-app.use(parser.urlencoded({ extended: false }));
-
-const io = require('socket.io').listen(server);
-server.listen(portAccess);
+app.use(parser.urlencoded({ extended: true }));
 
 app.get('/', function(req,res) {
-  res.sendFile('/index.html', {root: __dirname});
+  if (req.session.loggedin) {
+    res.sendFile('/index.html', {root: __dirname});
+  } else {
+    res.redirect('/auth/login');
+  }
 });
 
 app.get('/programs', function(req,res) {
@@ -55,9 +68,24 @@ app.post('/auth/login', function(req,res) {
   var uname = req.body.uname;
   var pword = req.body.pword;
 
-  res.send("Sucess! Your username is " + uname + ".");
+  if (uname && pword) {
+    con.query('select * from auth where uname = ? and pword = ?', [uname, pword], function (error, results, fields) {
+      if (results.length > 0) {
+        req.session.loggedin = true;
+        req.session.username = uname;
+        res.redirect('/');
+      } else {
+        res.send('Incorrect login credentials!');
+      }
+      res.end();
+    });
+  } else {
+    response.send('Please enter username and/or password!');
+		response.end();
+  }
 });
 
+app.listen(portaccess);
 /*
 app.get('/t', function(req,res){
   var q = req.query.q;
