@@ -78,7 +78,6 @@ app.post('/auth/login', function(req,res) {
       for (let row of resu.rows) {
         console.log(JSON.stringify(row));
       }
-      pool.end();
     });
 
     /*
