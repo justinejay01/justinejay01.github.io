@@ -2,21 +2,46 @@
 //const axios = require('axios');
 //const HttpsProxyAgent = require('https-proxy-agent');
 //const jwt = require('jsonwebtoken');
+const { Client } = require('pg');
 const path = require('path');
-const mysql = require('mysql');
+//const mysql = require('mysql');
 const parser = require('body-parser');
 const express = require('express');
 const session = require('express-session');
 const app = express();
+const knex = require('knex')({
+  client: 'pg',
+  connection: process.env.DATABASE_URL,
+});
+
+knex.schema.hasTable('auth').then(function(exists) {
+  if (!exists) {
+    return knex.schema.createTable('auth', function(t) {
+      t.increments('id').primary();
+      t.string('uname');
+      t.string('pword');
+      t.string('email');
+      t.string('role', 20);
+    });
+  }
+});
+
+knex('auth').where('role', 'admin').then(function(e) {
+  if (!e) {
+    return knex('auth').insert({id: '0', uname: 'admin', pword: 'admin', email: 'j@j.com', role: 'admin'});
+  }
+})
 
 //const server = http.createServer(app);
 
-var con = mysql.createConnection({
-	host     : 'fdb30.awardspace.net',
-	user     : '3719976_simpingtech',
-	password : 'Justinejay2001@',
-	database : '3719976_simpingtech'
+const client = new Client({
+  connectionString: process.env.DATABASE_URL,
+  ssl: {
+    rejectUnauthorized: false
+  }
 });
+
+client.connect();
 
 var portaccess = process.env.PORT || 8080;
 
@@ -64,12 +89,23 @@ app.get('/auth/login', function(req,res) {
   res.sendFile('/login.html', {root: __dirname});
 });
 
+
+
 app.post('/auth/login', function(req,res) {
   var uname = req.body.uname;
   var pword = req.body.pword;
 
   if (uname && pword) {
-    con.query('select * from auth where uname = ? and pword = ?', [uname, pword], function (error, results, fields) {
+    client.query('SELECT uname FROM auth where uname = $1 and pword = $2', [uname, pword], (err, resu) => {
+      if (err) throw err;
+      for (let row of resu.rows) {
+        res.send(JSON.stringify(row));
+      }
+      client.end();
+    });
+
+    /*
+    con.query('select * from auth where uname = ? and pword = ?', [uname, pword], function(error, results, fields) {
       if (results.length > 0) {
         req.session.loggedin = true;
         req.session.username = uname;
@@ -79,6 +115,7 @@ app.post('/auth/login', function(req,res) {
       }
       res.end();
     });
+    */
   } else {
     response.send('Please enter username and/or password!');
 		response.end();

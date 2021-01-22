@@ -19,7 +19,9 @@
     "https-proxy-agent" : "^5.0.0",
     "jsonwebtoken" : "^8.5.1",
     "mysql": "^2.18.1",
-    "express-session": "^1.17.1"
+    "express-session": "^1.17.1",
+    "pg": "^8.5.1",
+    "knex": "^0.21.15"
   },
   "engines": {
     "node": "12.x"
