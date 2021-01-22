@@ -9,28 +9,6 @@ const parser = require('body-parser');
 const express = require('express');
 const session = require('express-session');
 const app = express();
-const knex = require('knex')({
-  client: 'pg',
-  connection: process.env.DATABASE_URL,
-});
-
-knex.schema.hasTable('auth').then(function(exists) {
-  if (!exists) {
-    return knex.schema.createTable('auth', function(t) {
-      t.increments('id').primary();
-      t.string('uname');
-      t.string('pword');
-      t.string('email');
-      t.string('role', 20);
-    });
-  }
-});
-
-knex('auth').where('role', 'admin').then(function(e) {
-  if (!e) {
-    return knex('auth').insert({id: '0', uname: 'admin', pword: 'admin', email: 'j@j.com', role: 'admin'});
-  }
-})
 
 //const server = http.createServer(app);
 
@@ -50,6 +28,7 @@ app.use(session({
 	resave: true,
 	saveUninitialized: true
 }));
+
 app.use(parser.json());
 app.use(parser.urlencoded({ extended: true }));
 
@@ -89,14 +68,12 @@ app.get('/auth/login', function(req,res) {
   res.sendFile('/login.html', {root: __dirname});
 });
 
-
-
 app.post('/auth/login', function(req,res) {
   var uname = req.body.uname;
   var pword = req.body.pword;
 
   if (uname && pword) {
-    client.query('SELECT uname FROM auth where uname = $1 and pword = $2', [uname, pword], (err, resu) => {
+    client.query('SELECT uname FROM users.auth where uname = $1 and pword = $2', [uname, pword], (err, resu) => {
       if (err) throw err;
       for (let row of resu.rows) {
         res.send(JSON.stringify(row));
