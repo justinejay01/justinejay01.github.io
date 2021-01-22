@@ -12,14 +12,20 @@ const app = express();
 
 //const server = http.createServer(app);
 
-const pool = new Pool({
+const client = new Client({
   connectionString: process.env.DATABASE_URL,
   ssl: {
     rejectUnauthorized: false
   }
 });
 
-pool.connect();
+client.connect(err => {
+  if (err) {
+    console.error('connection error', err.stack);
+  } else {
+    console.log('connected');
+  }
+});
 
 var portaccess = process.env.PORT || 8080;
 
@@ -73,25 +79,15 @@ app.post('/auth/login', function(req,res) {
   var pword = req.body.pword;
 
   if (uname && pword) {
-    pool.query('SELECT uname FROM users.auth where uname = $1 and pword = $2', [uname, pword], (err, resu) => {
+    client.query('SELECT uname FROM users.auth where uname = $1 and pword = $2', [uname, pword], (err, resu) => {
       if (err) throw err;
       for (let row of resu.rows) {
         console.log(JSON.stringify(row));
-      }
-    });
-
-    /*
-    con.query('select * from auth where uname = ? and pword = ?', [uname, pword], function(error, results, fields) {
-      if (results.length > 0) {
         req.session.loggedin = true;
         req.session.username = uname;
-        res.redirect('/');
-      } else {
-        res.send('Incorrect login credentials!');
       }
-      res.end();
+      client.end();
     });
-    */
   } else {
     response.send('Please enter username and/or password!');
 		response.end();
