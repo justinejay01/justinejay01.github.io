@@ -52,8 +52,8 @@ app.get('/auth/login', function(req,res) {
 });
 
 app.post('/auth/login', function(req,res) {
-  var uname = res.uname;
-  var pword = res.pword;
+  var uname = req.uname;
+  var pword = req.pword;
 
   res.send("Sucess! Your username is " + uname + ".");
 });
