@@ -2,7 +2,7 @@
 //const axios = require('axios');
 //const HttpsProxyAgent = require('https-proxy-agent');
 //const jwt = require('jsonwebtoken');
-const { Client } = require('pg');
+const { Pool, Client } = require('pg');
 const path = require('path');
 //const mysql = require('mysql');
 const parser = require('body-parser');
@@ -12,14 +12,14 @@ const app = express();
 
 //const server = http.createServer(app);
 
-const client = new Client({
+const pool = new Pool({
   connectionString: process.env.DATABASE_URL,
   ssl: {
     rejectUnauthorized: false
   }
 });
 
-client.connect();
+pool.connect();
 
 var portaccess = process.env.PORT || 8080;
 
@@ -73,12 +73,12 @@ app.post('/auth/login', function(req,res) {
   var pword = req.body.pword;
 
   if (uname && pword) {
-    client.query('SELECT uname FROM users.auth where uname = $1 and pword = $2', [uname, pword], (err, resu) => {
+    pool.query('SELECT uname FROM users.auth where uname = $1 and pword = $2', [uname, pword], (err, resu) => {
       if (err) throw err;
       for (let row of resu.rows) {
-        res.send(JSON.stringify(row));
+        console.log(JSON.stringify(row));
       }
-      client.end();
+      pool.end();
     });
 
     /*
