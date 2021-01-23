@@ -102,7 +102,7 @@ app.post('/auth/login', function(req,res) {
           .query('SELECT uname FROM users.auth where uname = $1 and pword = $2', [uname, pword])
           .then(resu => {
             client.release()
-            res.send(resu.rows[0])
+            console.log(resu.rows[0])
             req.session.loggedin = true;
             req.session.username = uname;
             res.redirect('/');
