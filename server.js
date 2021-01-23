@@ -106,7 +106,7 @@ app.post('/auth/login', function(req,res) {
             var auth = JSON.parse(resu.rows[0]);
             console.log(auth.role);
             role = auth.role;
-            if (resu.rows[0] != null) {
+            if (role != null) {
               req.session.loggedin = true;
               req.session.username = uname;
               res.redirect('/');
