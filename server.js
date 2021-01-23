@@ -39,27 +39,51 @@ app.get('/', function(req,res) {
 });
 
 app.get('/programs', function(req,res) {
-  res.sendFile('/programs/index.html', {root: __dirname});
+  if (req.session.loggedin) {
+    res.sendFile('/programs/index.html', {root: __dirname});
+  } else {
+    res.redirect('/auth/login');
+  }
 });
 
 app.get('/programs/csharp', function(req,res) {
-  res.sendFile('/programs/csharp/index.html', {root: __dirname});
+  if (req.session.loggedin) {
+    res.sendFile('/programs/csharp/index.html', {root: __dirname});
+  } else {
+    res.redirect('/auth/login');
+  }
 });
 
 app.get('/programs/csharp/lesson-6', function(req,res) {
-  res.sendFile('/programs/csharp/lesson-6.html', {root: __dirname});
+  if (req.session.loggedin) {
+    res.sendFile('/programs/csharp/lesson-6.html', {root: __dirname});
+  } else {
+    res.redirect('/auth/login');
+  }
 });
 
 app.get('/programs/csharp/lesson-7', function(req,res) {
-  res.sendFile('/programs/csharp/lesson-7.html', {root: __dirname});
+  if (req.session.loggedin) {
+    res.sendFile('/programs/csharp/lesson-7.html', {root: __dirname});
+  } else {
+    res.redirect('/auth/login');
+  }
 });
 
 app.get('/tools', function(req,res) {
-  res.sendFile('/tools/index.html', {root: __dirname});
+  if (req.session.loggedin) {
+    res.sendFile('/tools/index.html', {root: __dirname});
+  } else {
+    res.redirect('/auth/login');
+  }
 });
 
 app.get('/tools/gdrive-linkgen', function(req,res) {
-  res.sendFile('/tools/gdrive-linkgen.html', {root: __dirname});
+  if (req.session.loggedin) {
+    res.sendFile('/tools/gdrive-linkgen.html', {root: __dirname});
+  } else {
+    res.redirect('/auth/login');
+  }
 });
 
 app.get('/auth/login', function(req,res) {
@@ -79,23 +103,15 @@ app.post('/auth/login', function(req,res) {
           .then(resu => {
             client.release()
             res.send(resu.rows[0])
+            req.session.loggedin = true;
+            req.session.username = uname;
+            res.redirect('/');
           })
           .catch(err => {
             client.release()
             res.send(err.stack)
           })
     })
-    /*
-    client.query('SELECT uname FROM users.auth where uname = $1 and pword = $2', [uname, pword], (err, resu) => {
-      if (err) throw err;
-      for (let row of resu.rows) {
-        console.log(JSON.stringify(row));
-        req.session.loggedin = true;
-        req.session.username = uname;
-      }
-      client.release(true);
-    });
-    */
   } else {
     response.send('Please enter username and/or password!');
 		response.end();
