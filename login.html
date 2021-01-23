@@ -49,8 +49,8 @@
         $("#login").click(function(){
             $.post("/auth/login",
                 {
-                    uname: uname0,
-                    pword: pword0
+                    uname: document.getElementById('loginUname').value,
+                    pword: document.getElementById('loginPword').value
                 },
             function(data){
                 alert(data);
