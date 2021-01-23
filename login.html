@@ -24,18 +24,16 @@
                 <div class="card-header">
                     <h4 class="card-title">Log In</h4>
                 </div>
-                <form action="/auth/login" method="post">
-                    <div class="card-body">
-                        <label for="loginUname">Username</label>
-                        <input class="form-control" type="text" id="loginUname" name="uname" placeholder="Enter username..." required> <br>
-                        <label for="loginPword">Password</label>
-                        <input class="form-control" type="password" id="loginPword" name="pword" placeholder="Enter password..." required>
-                    </div>
-                    <div class="card-footer">
-                        <button class="btn btn-primary btn-block">Log In</button> <hr>
-                        <button class="btn btn-success btn-block">Sign Up</button>
-                    </div>
-                </form>
+                <div class="card-body">
+                    <label for="loginUname">Username</label>
+                    <input class="form-control" type="text" id="loginUname" name="uname" placeholder="Enter username..." required> <br>
+                    <label for="loginPword">Password</label>
+                    <input class="form-control" type="password" id="loginPword" name="pword" placeholder="Enter password..." required>
+                </div>
+                <div class="card-footer">
+                    <button class="btn btn-primary btn-block" id="login">Log In</button> <hr>
+                    <button class="btn btn-success btn-block">Sign Up</button>
+                </div>
             </div>
         </div>
     </div>
@@ -46,7 +44,7 @@
 
 <script>
     $(document).ready(function(){
-        $("button").click(function(){
+        $("#login").click(function(){
             $.post("/auth/login",
                 {
                     uname: document.getElementById('loginUname').value,
