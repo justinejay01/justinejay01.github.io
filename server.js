@@ -9,6 +9,7 @@ const parser = require('body-parser');
 const express = require('express');
 const session = require('express-session');
 const app = express();
+var role = null;
 
 //const server = http.createServer(app);
 
@@ -99,10 +100,12 @@ app.post('/auth/login', function(req,res) {
       .connect()
       .then(client => {
         return client
-          .query('SELECT uname FROM users.auth where uname = $1 and pword = $2', [uname, pword])
+          .query('SELECT role FROM users.auth where uname = $1 and pword = $2', [uname, pword])
           .then(resu => {
             client.release()
-            console.log(resu.rows[0])
+            var auth = JSON.parse(resu.rows[0]);
+            console.log(auth.role);
+            role = auth.role;
             if (resu.rows[0] != null) {
               req.session.loggedin = true;
               req.session.username = uname;

@@ -37,12 +37,27 @@
                     </div>
                 </form>
             </div>
-          </div>
-      </div>
-  </div>
+        </div>
+    </div>
+</div>
 
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.5.3/js/bootstrap.bundle.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.5.3/js/bootstrap.bundle.min.js"></script>
+
+<script>
+    $(document).ready(function(){
+        $("button").click(function(){
+            $.post("/auth/login",
+                {
+                    uname: document.getElementById('loginUname').value,
+                    pword: document.getElementById('loginPword').value
+                },
+            function(data,status){
+                alert("Data: " + data + "\nStatus: " + status);
+            });
+        });
+    });
+</script>
 
 </body>
 
