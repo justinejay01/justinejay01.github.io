@@ -103,9 +103,13 @@ app.post('/auth/login', function(req,res) {
           .then(resu => {
             client.release()
             console.log(resu.rows[0])
-            req.session.loggedin = true;
-            req.session.username = uname;
-            res.redirect('/');
+            if (resu.rows[0] != null) {
+              req.session.loggedin = true;
+              req.session.username = uname;
+              res.redirect('/');
+            } else {
+              res.send('Incorrect login credentials!');
+            }
           })
           .catch(err => {
             client.release()
