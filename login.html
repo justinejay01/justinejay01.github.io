@@ -43,15 +43,17 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.5.3/js/bootstrap.bundle.min.js"></script>
 
 <script>
+    var uname0 = document.getElementById('loginUname').value;
+    var pword0 = document.getElementById('loginPword').value;
     $(document).ready(function(){
         $("#login").click(function(){
             $.post("/auth/login",
                 {
-                    uname: document.getElementById('loginUname').value,
-                    pword: document.getElementById('loginPword').value
+                    uname: uname0,
+                    pword: pword0
                 },
-            function(data,status){
-                alert("Data: " + data + "\nStatus: " + status);
+            function(data){
+                alert(data);
             });
         });
     });
