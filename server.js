@@ -12,18 +12,10 @@ const app = express();
 
 //const server = http.createServer(app);
 
-const client = new Client({
+const pool = new Pool({
   connectionString: process.env.DATABASE_URL,
   ssl: {
     rejectUnauthorized: false
-  }
-});
-
-client.connect(err => {
-  if (err) {
-    console.error('connection error', err.stack);
-  } else {
-    console.log('connected');
   }
 });
 
@@ -79,6 +71,21 @@ app.post('/auth/login', function(req,res) {
   var pword = req.body.pword;
 
   if (uname && pword) {
+    pool
+      .connect()
+      .then(client => {
+        return client
+          .query('SELECT uname FROM users.auth where uname = $1 and pword = $2', [uname, pword])
+          .then(resu => {
+            client.release()
+            res.send(resu.rows[0])
+          })
+          .catch(err => {
+            client.release()
+            res.send(err.stack)
+          })
+    })
+    /*
     client.query('SELECT uname FROM users.auth where uname = $1 and pword = $2', [uname, pword], (err, resu) => {
       if (err) throw err;
       for (let row of resu.rows) {
@@ -88,6 +95,7 @@ app.post('/auth/login', function(req,res) {
       }
       client.release(true);
     });
+    */
   } else {
     response.send('Please enter username and/or password!');
 		response.end();
