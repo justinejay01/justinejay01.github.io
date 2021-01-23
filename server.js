@@ -120,8 +120,8 @@ app.post('/auth/login', function(req,res) {
           })
     })
   } else {
-    response.send('Please enter username and/or password!');
-		response.end();
+    res.send('Please enter username and/or password!');
+		res.end();
   }
 });
 
