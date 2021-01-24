@@ -88,7 +88,11 @@ app.get('/tools/gdrive-linkgen', function(req,res) {
 });
 
 app.get('/auth/login', function(req,res) {
-  res.sendFile('/login.html', {root: __dirname});
+  if (req.session.loggedin) {
+    res.sendFile('/', {root: __dirname});
+  } else {
+    res.redirect('/auth/login');
+  }
 });
 
 app.post('/auth/login', function(req,res) {

@@ -44,8 +44,6 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.5.3/js/bootstrap.bundle.min.js"></script>
 
 <script>
-    var uname0 = document.getElementById('loginUname').value;
-    var pword0 = document.getElementById('loginPword').value;
     $(document).ready(function(){
         $("#login").click(function(){
             $.post("/auth/login",
@@ -56,16 +54,31 @@
             function(data){
                 if (data == '1') {
                     var divAlert = document.createElement('div');
+                    var divAlertAttr = document.createAttribute('class');
+                    divAlertAttr.value = 'alert alert-success';
+                    divAlert.setAttributeNode(divAlertAttr);
                     var nodeAlert = document.createTextNode('Logging in...');
                     divAlert.appendChild(nodeAlert);
 
                     var alertLogin = document.getElementById('alertLogin');
                     alertLogin.appendChild(divAlert);
+
                     setTimeout( function() {
                         window.location.replace('/');
                     }, 3000);
                 } else {
-                    alert('Incorrect!');
+                    var divAlert = document.createElement('div');
+                    var divAlertAttr = document.createAttribute('class');
+                    divAlertAttr.value = 'alert alert-danger';
+                    divAlert.setAttributeNode(divAlertAttr);
+                    var nodeAlert = document.createTextNode('Incorrect login credentials!');
+                    divAlert.appendChild(nodeAlert);
+
+                    var alertLogin = document.getElementById('alertLogin');
+                    alertLogin.appendChild(divAlert);
+
+                    document.getElementById('loginUname').value = '';
+                    document.getElementById('loginPword').value = '';
                 }
             });
         });
