@@ -91,7 +91,7 @@ app.get('/auth/login', function(req,res) {
   if (req.session.loggedin) {
     res.sendFile('/', {root: __dirname});
   } else {
-    res.redirect('/auth/login');
+    res.sendFile('/login.html', {root: __dirname});
   }
 });
 
