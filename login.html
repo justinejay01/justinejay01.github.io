@@ -25,6 +25,7 @@
                     <h4 class="card-title">Log In</h4>
                 </div>
                 <div class="card-body">
+                    <div id="alertLogin"></div>
                     <label for="loginUname">Username</label>
                     <input class="form-control" type="text" id="loginUname" name="uname" placeholder="Enter username..." required> <br>
                     <label for="loginPword">Password</label>
@@ -53,7 +54,19 @@
                     pword: document.getElementById('loginPword').value
                 },
             function(data){
-                alert(data);
+                if (data == '1') {
+                    var divAlert = document.createElement('div');
+                    var nodeAlert = document.createTextNode('Logging in...');
+                    divAlert.appendChild(nodeAlert);
+
+                    var alertLogin = document.getElementById('alertLogin');
+                    alertLogin.appendChild(divAlert);
+                    setTimeout( function() {
+                        window.location.replace('/');
+                    }, 3000);
+                } else {
+                    alert('Incorrect!');
+                }
             });
         });
     });

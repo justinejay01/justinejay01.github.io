@@ -105,9 +105,9 @@ app.post('/auth/login', function(req,res) {
           //role = auth.role;
           req.session.loggedin = true;
           req.session.username = uname;
-          res.redirect('/');
+          res.send('1');
         } else {
-          res.send('Incorrect login credentials!');
+          res.send('0');
         }
       })
       .catch(err =>
