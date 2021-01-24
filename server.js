@@ -100,9 +100,9 @@ app.post('/auth/login', function(req,res) {
       .query('SELECT role FROM users.auth where uname = $1 and pword = $2', [uname, pword])
       .then(resu => {
         if (resu.rows[0] != null) {
-          var auth = JSON.parse(resu.rows[0]);
-          console.log(auth.role);
-          role = auth.role;
+          //var auth = JSON.parse(resu.rows[0]);
+          //console.log(auth.role);
+          //role = auth.role;
           req.session.loggedin = true;
           req.session.username = uname;
           res.redirect('/');
