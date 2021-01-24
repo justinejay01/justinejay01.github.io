@@ -25,7 +25,12 @@
                     <h4 class="card-title">Log In</h4>
                 </div>
                 <div class="card-body">
-                    <div id="alertLogin"></div>
+                    <div class="alert alert-success d-none" id="loginSuccess">
+                        Logging in...
+                    </div>
+                    <div class="alert alert-danger d-none" id="loginFailed">
+                        Incorrect login credentials! 
+                    </div>
                     <label for="loginUname">Username</label>
                     <input class="form-control" type="text" id="loginUname" name="uname" placeholder="Enter username..." required> <br>
                     <label for="loginPword">Password</label>
@@ -53,6 +58,7 @@
                 },
             function(data){
                 if (data == '1') {
+                    /*
                     var divAlert = document.createElement('div');
                     var divAlertAttr = document.createAttribute('class');
                     divAlertAttr.value = 'alert alert-success';
@@ -62,11 +68,15 @@
 
                     var alertLogin = document.getElementById('alertLogin');
                     alertLogin.appendChild(divAlert);
-
+                    */
+                    
+                    document.getElementById('loginSuccess').classList.remove('d-none');
+                    
                     setTimeout( function() {
                         window.location.replace('/');
                     }, 3000);
                 } else {
+                    /*
                     var divAlert = document.createElement('div');
                     var divAlertAttr = document.createAttribute('class');
                     divAlertAttr.value = 'alert alert-danger';
@@ -76,6 +86,12 @@
 
                     var alertLogin = document.getElementById('alertLogin');
                     alertLogin.appendChild(divAlert);
+                    */
+
+                    document.getElementById('loginFailed').classList.remove('d-none');
+                    setTimeout( function() {
+                        document.getElementById('loginFailed').classList.add('d-none');
+                    }, 3000);
 
                     document.getElementById('loginUname').value = '';
                     document.getElementById('loginPword').value = '';
