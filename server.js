@@ -97,28 +97,24 @@ app.post('/auth/login', function(req,res) {
 
   if (uname && pword) {
     pool
-      .connect()
-      .then(client => {
-        return client
-          .query('SELECT role FROM users.auth where uname = $1 and pword = $2', [uname, pword])
-          .then(resu => {
-            client.release()
-            var auth = JSON.parse(resu.rows[0]);
-            console.log(auth.role);
-            role = auth.role;
-            if (role != null) {
-              req.session.loggedin = true;
-              req.session.username = uname;
-              res.redirect('/');
-            } else {
-              res.send('Incorrect login credentials!');
-            }
-          })
-          .catch(err => {
-            client.release()
-            res.send(err.stack)
-          })
-    })
+      .query('SELECT role FROM users.auth where uname = $1 and pword = $2', [uname, pword])
+      .then(resu => {
+        var auth = JSON.parse(resu.rows[0]);
+        console.log(auth.role);
+        role = auth.role;
+        if (role != null) {
+          req.session.loggedin = true;
+          req.session.username = uname;
+          res.redirect('/');
+        } else {
+          res.send('Incorrect login credentials!');
+        }
+      })
+      .catch(err =>
+        setImmediate(() => {
+          throw err
+        })
+      )
   } else {
     res.send('Please enter username and/or password!');
 		res.end();
