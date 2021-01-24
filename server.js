@@ -8,6 +8,7 @@ const path = require('path');
 const parser = require('body-parser');
 const express = require('express');
 const session = require('express-session');
+const MemoryStore = require('memorystore')(session);
 const app = express();
 var role = null;
 
@@ -22,11 +23,23 @@ const pool = new Pool({
 
 var portaccess = process.env.PORT || 8080;
 
+/*
 app.use(session({
 	secret: 'secret',
 	resave: true,
 	saveUninitialized: true
 }));
+*/
+
+app.use(session({
+  cookie: { maxAge: 86400000 },
+  store: new MemoryStore({
+    checkPeriod: 86400000
+  }),
+  resave: false,
+  secret: 'secret',
+	saveUninitialized: true
+}))
 
 app.use(parser.json());
 app.use(parser.urlencoded({ extended: true }));
