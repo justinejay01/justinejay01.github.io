@@ -102,7 +102,7 @@ app.get('/tools/gdrive-linkgen', function(req,res) {
 
 app.get('/auth/login', function(req,res) {
   if (req.session.loggedin) {
-    res.sendFile('/', {root: __dirname});
+    res.redirect('/');
   } else {
     res.sendFile('/login.html', {root: __dirname});
   }
