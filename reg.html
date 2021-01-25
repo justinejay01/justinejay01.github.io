@@ -25,7 +25,7 @@
             <div class="col-lg-4">
                 <div class="card mx-auto my-4">
                     <div class="card-header">
-                        <h4 class="card-title">Log In</h4>
+                        <h4 class="card-title">Register</h4>
                     </div>
                     <form id="formReg" action="javascript:void(0);" method="post">
                         <div class="card-body">
@@ -36,25 +36,62 @@
                                 Username already exist!
                             </div>
                             <div class="alert alert-danger animate__animated d-none" id="regFailed">
-                                Error creating your account! Reload this page or contact website administrator!
+                                Error creating your account! Reload this page or contact
+                                website administrator!
                             </div>
-                            <label for="regUname">Username</label>
-                            <input class="form-control" type="text" id="regUname" name="uname"
-                                placeholder="Enter username..." required />
+                            <div class="input-group">
+                                <div class="input-group-text" id="svgUname">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
+                                        class="bi bi-person-circle" viewBox="0 0 16 16">
+                                        <path d="M11 6a3 3 0 1 1-6 0 3 3 0 0 1 6 0z" />
+                                        <path fill-rule="evenodd"
+                                            d="M0 8a8 8 0 1 1 16 0A8 8 0 0 1 0 8zm8-7a7 7 0 0 0-5.468 11.37C3.242 11.226 4.805 10 8 10s4.757 1.225 5.468 2.37A7 7 0 0 0 8 1z" />
+                                    </svg>
+                                </div>
+                                <input class="form-control" type="text" id="regUname" name="uname"
+                                    placeholder="Enter username..." required />
+                            </div>
                             <br />
-                            <label for="regEmail">E-mail address</label>
-                            <input class="form-control" type="text" id="regEmail" name="email"
-                                placeholder="Enter e-mail address..." required />
+                            <div class="input-group">
+                                <div class="input-group-text" id="svgEmail">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
+                                        class="bi bi-envelope" viewBox="0 0 16 16">
+                                        <path
+                                            d="M0 4a2 2 0 0 1 2-2h12a2 2 0 0 1 2 2v8a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2V4zm2-1a1 1 0 0 0-1 1v.217l7 4.2 7-4.2V4a1 1 0 0 0-1-1H2zm13 2.383l-4.758 2.855L15 11.114v-5.73zm-.034 6.878L9.271 8.82 8 9.583 6.728 8.82l-5.694 3.44A1 1 0 0 0 2 13h12a1 1 0 0 0 .966-.739zM1 11.114l4.758-2.876L1 5.383v5.73z" />
+                                    </svg>
+                                </div>
+                                <input class="form-control" type="text" id="regEmail" name="email"
+                                    placeholder="Enter e-mail address..." required />
+                            </div>
                             <br />
-                            <label for="regPword">Password</label>
-                            <input class="form-control" type="password" id="regPword" name="pword"
-                                placeholder="Enter password..." required />
+                            <div class="input-group">
+                                <div class="input-group-text" id="svgPword">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
+                                        class="bi bi-key" viewBox="0 0 16 16">
+                                        <path
+                                            d="M0 8a4 4 0 0 1 7.465-2H14a.5.5 0 0 1 .354.146l1.5 1.5a.5.5 0 0 1 0 .708l-1.5 1.5a.5.5 0 0 1-.708 0L13 9.207l-.646.647a.5.5 0 0 1-.708 0L11 9.207l-.646.647a.5.5 0 0 1-.708 0L9 9.207l-.646.647A.5.5 0 0 1 8 10h-.535A4 4 0 0 1 0 8zm4-3a3 3 0 1 0 2.712 4.285A.5.5 0 0 1 7.163 9h.63l.853-.854a.5.5 0 0 1 .708 0l.646.647.646-.647a.5.5 0 0 1 .708 0l.646.647.646-.647a.5.5 0 0 1 .708 0l.646.647.793-.793-1-1h-6.63a.5.5 0 0 1-.451-.285A3 3 0 0 0 4 5z" />
+                                        <path d="M4 8a1 1 0 1 1-2 0 1 1 0 0 1 2 0z" />
+                                    </svg>
+                                </div>
+                                <input class="form-control" type="password" id="regPword" name="pword"
+                                    placeholder="Enter password..." required />
+                            </div>
                         </div>
                         <div class="card-footer">
-                            <div class="d-grid gap-2">
-                                <input type="submit" class="btn btn-primary btn-block" id="btnReg" value="Register" />
-                                <hr />
-                                <input type="button" class="btn btn-success btn-block" id="btnLogin" value="Log In" />
+                            <div class="btn-toolbar justify-content-between">
+                                <div class="button-group" role="button">
+                                    <button class="btn btn-outline-success btn-block" id="btnLogin"><svg
+                                            xmlns="http://www.w3.org/2000/svg" width="16" height="16"
+                                            fill="currentColor" class="bi bi-arrow-left" viewBox="0 0 16 16">
+                                            <path fill-rule="evenodd"
+                                                d="M15 8a.5.5 0 0 0-.5-.5H2.707l3.147-3.146a.5.5 0 1 0-.708-.708l-4 4a.5.5 0 0 0 0 .708l4 4a.5.5 0 0 0 .708-.708L2.707 8.5H14.5A.5.5 0 0 0 15 8z" />
+                                        </svg> Log In
+                                    </button>
+                                </div>
+                                <div class="button-group">
+                                    <input type="submit" class="btn btn-primary btn-block" id="btnReg"
+                                        value="Register" />
+                                </div>
                             </div>
                         </div>
                     </form>
@@ -140,7 +177,7 @@
                 "Content-Type",
                 "application/x-www-form-urlencoded; charset=UTF-8"
             );
-            xhr.send("uname=" + uname + "email="+ email + "&pword=" + pword);
+            xhr.send("uname=" + uname + "email=" + email + "&pword=" + pword);
         };
     </script>
 </body>
