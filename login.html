@@ -40,8 +40,8 @@
                     </div>
                     <div class="card-footer">
                         <div class="d-grid gap-2">
-                            <input type="submit" class="btn btn-primary btn-block" id="login" value="Log In"><hr>
-                            <input type="button" class="btn btn-success btn-block" value="Register">
+                            <input type="submit" class="btn btn-primary btn-block" id="btnLogin" value="Log In"><hr>
+                            <input type="button" class="btn btn-success btn-block" id="btnReg" value="Register">
                         </div>
                     </div>
                 </form>
@@ -67,6 +67,8 @@
                     loginSuccess.classList.remove('d-none');
                     loginSuccess.classList.add('animate__fadeIn');
                     
+                    document.getElementById('btnLogin').setAttribute('disabled');
+
                     setTimeout( function() {
                         window.location.replace('/');
                     }, 3000);
@@ -74,6 +76,8 @@
                     var loginFailed = document.getElementById('loginFailed');
                     loginFailed.classList.remove('d-none');
                     
+                    document.getElementById('btnLogin').setAttribute('disabled');
+
                     if (loginFailed.classList.contains('animate__fadeOut')) {
                         loginFailed.classList.toggle('animate__fadeOut');
                     }
@@ -87,7 +91,10 @@
                     setTimeout( function() {
                         loginFailed.classList.add('d-none');
                     }, 4000);
-                    document.getElementById('loginUname').value = '';
+                    setTimeout( function() {
+                        document.getElementById('btnLogin').removeAttribute('disabled');
+                    }, 4500);
+                    document.getElementById('loginPword').value = '';
                 }
             });
         });
