@@ -48,7 +48,7 @@ app.get('/', function (req, res) {
   if (req.session.loggedin) {
     res.sendFile('/index.html', { root: __dirname });
   } else {
-    res.redirect('/auth/login');
+    res.redirect('/auth/');
   }
 });
 
@@ -56,7 +56,7 @@ app.get('/programs', function (req, res) {
   if (req.session.loggedin) {
     res.sendFile('/programs/index.html', { root: __dirname });
   } else {
-    res.redirect('/auth/login');
+    res.redirect('/auth/');
   }
 });
 
@@ -64,7 +64,7 @@ app.get('/programs/csharp', function (req, res) {
   if (req.session.loggedin) {
     res.sendFile('/programs/csharp/index.html', { root: __dirname });
   } else {
-    res.redirect('/auth/login');
+    res.redirect('/auth/');
   }
 });
 
@@ -72,7 +72,7 @@ app.get('/programs/csharp/lesson-6', function (req, res) {
   if (req.session.loggedin) {
     res.sendFile('/programs/csharp/lesson-6.html', { root: __dirname });
   } else {
-    res.redirect('/auth/login');
+    res.redirect('/auth/');
   }
 });
 
@@ -80,7 +80,7 @@ app.get('/programs/csharp/lesson-7', function (req, res) {
   if (req.session.loggedin) {
     res.sendFile('/programs/csharp/lesson-7.html', { root: __dirname });
   } else {
-    res.redirect('/auth/login');
+    res.redirect('/auth/');
   }
 });
 
@@ -88,7 +88,7 @@ app.get('/tools', function (req, res) {
   if (req.session.loggedin) {
     res.sendFile('/tools/index.html', { root: __dirname });
   } else {
-    res.redirect('/auth/login');
+    res.redirect('/auth/');
   }
 });
 
@@ -96,23 +96,15 @@ app.get('/tools/gdrive-linkgen', function (req, res) {
   if (req.session.loggedin) {
     res.sendFile('/tools/gdrive-linkgen.html', { root: __dirname });
   } else {
-    res.redirect('/auth/login');
+    res.redirect('/auth/');
   }
 });
 
-app.get('/auth/login', function (req, res) {
+app.get('/auth/', function (req, res) {
   if (req.session.loggedin) {
     res.redirect('/');
   } else {
-    res.sendFile('/login.html', { root: __dirname });
-  }
-});
-
-app.get('/auth/reg', function (req, res) {
-  if (req.session.loggedin) {
-    res.redirect('/');
-  } else {
-    res.sendFile('/reg.html', { root: __dirname });
+    res.sendFile('/auth.html', { root: __dirname });
   }
 });
 
