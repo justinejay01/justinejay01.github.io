@@ -25,9 +25,9 @@ var portaccess = process.env.PORT || 8080;
 
 /*
 app.use(session({
-	secret: 'secret',
-	resave: true,
-	saveUninitialized: true
+  secret: 'secret',
+  resave: true,
+  saveUninitialized: true
 }));
 */
 
@@ -41,74 +41,82 @@ app.use(session({
   }),
   resave: false,
   secret: 'secret',
-	saveUninitialized: true
+  saveUninitialized: true
 }))
 
-app.get('/', function(req,res) {
+app.get('/', function (req, res) {
   if (req.session.loggedin) {
-    res.sendFile('/index.html', {root: __dirname});
+    res.sendFile('/index.html', { root: __dirname });
   } else {
     res.redirect('/auth/login');
   }
 });
 
-app.get('/programs', function(req,res) {
+app.get('/programs', function (req, res) {
   if (req.session.loggedin) {
-    res.sendFile('/programs/index.html', {root: __dirname});
+    res.sendFile('/programs/index.html', { root: __dirname });
   } else {
     res.redirect('/auth/login');
   }
 });
 
-app.get('/programs/csharp', function(req,res) {
+app.get('/programs/csharp', function (req, res) {
   if (req.session.loggedin) {
-    res.sendFile('/programs/csharp/index.html', {root: __dirname});
+    res.sendFile('/programs/csharp/index.html', { root: __dirname });
   } else {
     res.redirect('/auth/login');
   }
 });
 
-app.get('/programs/csharp/lesson-6', function(req,res) {
+app.get('/programs/csharp/lesson-6', function (req, res) {
   if (req.session.loggedin) {
-    res.sendFile('/programs/csharp/lesson-6.html', {root: __dirname});
+    res.sendFile('/programs/csharp/lesson-6.html', { root: __dirname });
   } else {
     res.redirect('/auth/login');
   }
 });
 
-app.get('/programs/csharp/lesson-7', function(req,res) {
+app.get('/programs/csharp/lesson-7', function (req, res) {
   if (req.session.loggedin) {
-    res.sendFile('/programs/csharp/lesson-7.html', {root: __dirname});
+    res.sendFile('/programs/csharp/lesson-7.html', { root: __dirname });
   } else {
     res.redirect('/auth/login');
   }
 });
 
-app.get('/tools', function(req,res) {
+app.get('/tools', function (req, res) {
   if (req.session.loggedin) {
-    res.sendFile('/tools/index.html', {root: __dirname});
+    res.sendFile('/tools/index.html', { root: __dirname });
   } else {
     res.redirect('/auth/login');
   }
 });
 
-app.get('/tools/gdrive-linkgen', function(req,res) {
+app.get('/tools/gdrive-linkgen', function (req, res) {
   if (req.session.loggedin) {
-    res.sendFile('/tools/gdrive-linkgen.html', {root: __dirname});
+    res.sendFile('/tools/gdrive-linkgen.html', { root: __dirname });
   } else {
     res.redirect('/auth/login');
   }
 });
 
-app.get('/auth/login', function(req,res) {
+app.get('/auth/login', function (req, res) {
   if (req.session.loggedin) {
     res.redirect('/');
   } else {
-    res.sendFile('/login.html', {root: __dirname});
+    res.sendFile('/login.html', { root: __dirname });
   }
 });
 
-app.post('/auth/login', function(req,res) {
+app.get('/auth/reg', function (req, res) {
+  if (req.session.loggedin) {
+    res.redirect('/');
+  } else {
+    res.sendFile('/reg.html', { root: __dirname });
+  }
+});
+
+app.post('/auth/login', function (req, res) {
   var uname = req.body.uname;
   var pword = req.body.pword;
 
@@ -134,7 +142,46 @@ app.post('/auth/login', function(req,res) {
       )
   } else {
     res.send('Please enter username and/or password!');
-		res.end();
+    res.end();
+  }
+});
+
+app.post('/auth/reg', function (req, res) {
+  var uname = req.body.uname;
+  var email = req.body.email;
+  var pword = req.body.pword;
+
+  if (uname && pword && email) {
+    pool
+      .query('SELECT count(uname) FROM users.auth where uname = $1', [uname])
+      .then(resu => {
+        if (resu.rows[0] != 0) {
+          res.send('2');
+        } else {
+          pool
+            .query('INSERT INTO users.auth (id,uname,pword,email,role) values (0,$1,$2,$3,$4)', [uname,pword,email,'user'])
+            .then(resu => {
+              if (resu.rowCount != 0) {
+                res.send('1');
+              } else {
+                res.send('0');
+              }
+            })
+            .catch(err =>
+              setImmediate(() => {
+                throw err
+              })
+            )
+        }
+      })
+      .catch(err =>
+        setImmediate(() => {
+          throw err
+        })
+      )
+  } else {
+    res.send('Please enter username and/or password!');
+    res.end();
   }
 });
 

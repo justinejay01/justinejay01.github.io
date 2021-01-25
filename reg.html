@@ -2,107 +2,147 @@
 <html lang="en">
 
 <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+    <meta name="description" content="SimpingTech" />
+    <meta name="author" content="SimpingTech" />
 
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-  <meta name="description" content="Performance Task for Lesson 6">
-  <meta name="author" content="SimpingTech">
+    <title>Log In - SimpingTech</title>
 
-  <title>Register - SimpingTech</title>
-
-  <link href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.5.3/css/bootstrap.min.css" rel="stylesheet">
-
+    <link rel="stylesheet"
+        href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.0.0-beta1/css/bootstrap.min.css"
+        integrity="sha512-thoh2veB35ojlAhyYZC0eaztTAUhxLvSZlWrNtlV01njqs/UdY3421Jg7lX0Gq9SRdGVQeL8xeBp9x1IPyL1wQ=="
+        crossorigin="anonymous" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"
+        integrity="sha512-c42qTSw/wPZ3/5LBzD+Bw5f7bSF2oxou6wEb+I/lqeaKV5FDIfMvvRp772y4jcJLKuGUOpbJMdg/BTl50fJYAw=="
+        crossorigin="anonymous" />
 </head>
 
 <body>
-
-  <div class="container">
-      <div class="row">
-          <div class="col-lg-4"></div>
-          <div class="col-lg-4">
-            <div class="card mx-auto my-4">
-                <div class="card-header">
-                    <h4 class="card-title">Register</h4>
-                </div>
-                <div class="card-body">
-                    <div class="alert alert-success d-none" id="regSuccess">
-                        Register successful! Click <a href="/auth/login">here</a> to log in!
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-4"></div>
+            <div class="col-lg-4">
+                <div class="card mx-auto my-4">
+                    <div class="card-header">
+                        <h4 class="card-title">Log In</h4>
                     </div>
-                    <div class="alert alert-danger d-none" id="regFailed">
-                        Please fill up all the blank!
-                    </div>
-                    <label for="regUname">Username</label>
-                    <input class="form-control" type="text" id="loginUname" name="uname" placeholder="Enter username..." required> <br>
-                    <label for="regEmail">E-mail address</label>
-                    <input class="form-control" type="password" id="regEmail" name="email" placeholder="Enter email..." required> <br>
-                    <label for="regPword">Password</label>
-                    <input class="form-control" type="password" id="loginPword" name="pword" placeholder="Enter password..." required>
-                </div>
-                <div class="card-footer">
-                    <button class="btn btn-primary btn-block" id="login">Register</button> <hr>
-                    <button class="btn btn-success btn-block">Log In</button>
+                    <form id="formReg" action="javascript:void(0);" method="post">
+                        <div class="card-body">
+                            <div class="alert alert-success animate__animated d-none" id="regSuccess">
+                                Successful! Click <a href="/">here</a> to log in!
+                            </div>
+                            <div class="alert alert-danger animate__animated d-none" id="regExist">
+                                Username already exist!
+                            </div>
+                            <div class="alert alert-danger animate__animated d-none" id="regFailed">
+                                Error creating your account! Reload this page or contact website administrator!
+                            </div>
+                            <label for="regUname">Username</label>
+                            <input class="form-control" type="text" id="regUname" name="uname"
+                                placeholder="Enter username..." required />
+                            <br />
+                            <label for="regEmail">E-mail address</label>
+                            <input class="form-control" type="text" id="regEmail" name="email"
+                                placeholder="Enter e-mail address..." required />
+                            <br />
+                            <label for="regPword">Password</label>
+                            <input class="form-control" type="password" id="regPword" name="pword"
+                                placeholder="Enter password..." required />
+                        </div>
+                        <div class="card-footer">
+                            <div class="d-grid gap-2">
+                                <input type="submit" class="btn btn-primary btn-block" id="btnReg" value="Register" />
+                                <hr />
+                                <input type="button" class="btn btn-success btn-block" id="btnLogin" value="Log In" />
+                            </div>
+                        </div>
+                    </form>
                 </div>
             </div>
         </div>
     </div>
-</div>
 
-<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.5.3/js/bootstrap.bundle.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.0.0-beta1/js/bootstrap.bundle.min.js"
+        integrity="sha512-q2vREMvON/xrz1KuOj5QKWmdvcHtM4XNbNer+Qbf4TOj+RMDnul0Fg3VmmYprdf3fnL1gZgzKhZszsp62r5Ugg=="
+        crossorigin="anonymous"></script>
 
-<script>
-    $(document).ready(function(){
-        $("#login").click(function(){
-            $.post("/auth/login",
-                {
-                    uname: document.getElementById('loginUname').value,
-                    pword: document.getElementById('loginPword').value
-                },
-            function(data){
-                if (data == '1') {
-                    /*
-                    var divAlert = document.createElement('div');
-                    var divAlertAttr = document.createAttribute('class');
-                    divAlertAttr.value = 'alert alert-success';
-                    divAlert.setAttributeNode(divAlertAttr);
-                    var nodeAlert = document.createTextNode('Logging in...');
-                    divAlert.appendChild(nodeAlert);
+    <script>
+        document.getElementById("formReg").onsubmit = function () {
+            var uname = document.getElementById("regUname").value;
+            var email = document.getElementById("regEmail").value;
+            var pword = document.getElementById("regPword").value;
 
-                    var alertLogin = document.getElementById('alertLogin');
-                    alertLogin.appendChild(divAlert);
-                    */
-                    
-                    document.getElementById('loginSuccess').classList.remove('d-none');
-                    
-                    setTimeout( function() {
-                        window.location.replace('/');
-                    }, 3000);
-                } else {
-                    /*
-                    var divAlert = document.createElement('div');
-                    var divAlertAttr = document.createAttribute('class');
-                    divAlertAttr.value = 'alert alert-danger';
-                    divAlert.setAttributeNode(divAlertAttr);
-                    var nodeAlert = document.createTextNode('Incorrect login credentials!');
-                    divAlert.appendChild(nodeAlert);
+            var xhr = new XMLHttpRequest();
+            xhr.onreadystatechange = function () {
+                if (this.readyState == 4 && this.status == 200) {
+                    if (this.responseText == "1") {
+                        var regSuccess = document.getElementById("regSuccess");
+                        regSuccess.classList.remove("d-none");
+                        regSuccess.classList.add("animate__fadeIn");
 
-                    var alertLogin = document.getElementById('alertLogin');
-                    alertLogin.appendChild(divAlert);
-                    */
+                        document.getElementById("btnReg").setAttribute("disabled", "");
 
-                    document.getElementById('loginFailed').classList.remove('d-none');
-                    setTimeout( function() {
-                        document.getElementById('loginFailed').classList.add('d-none');
-                    }, 3000);
+                        setTimeout(function () {
+                            window.location.replace("/");
+                        }, 3000);
+                    } else if (this.responseText == "2") {
+                        var regExist = document.getElementById("regExist");
+                        regExist.classList.remove("d-none");
 
-                    document.getElementById('loginUname').value = '';
-                    document.getElementById('loginPword').value = '';
+                        document.getElementById("btnReg").setAttribute("disabled", "");
+
+                        if (regExist.classList.contains("animate__fadeOut")) {
+                            regExist.classList.toggle("animate__fadeOut");
+                        }
+
+                        regExist.classList.toggle("animate__fadeIn");
+
+                        setTimeout(function () {
+                            regExist.classList.toggle("animate__fadeIn");
+                            regExist.classList.toggle("animate__fadeOut");
+                        }, 3000);
+                        setTimeout(function () {
+                            regExist.classList.add("d-none");
+                        }, 4000);
+                        setTimeout(function () {
+                            document.getElementById("btnReg").removeAttribute("disabled");
+                        }, 4500);
+                        document.getElementById("regPword").value = "";
+                    } else {
+                        var regFailed = document.getElementById("regFailed");
+                        regFailed.classList.remove("d-none");
+
+                        document.getElementById("btnReg").setAttribute("disabled", "");
+
+                        if (regFailed.classList.contains("animate__fadeOut")) {
+                            regFailed.classList.toggle("animate__fadeOut");
+                        }
+
+                        regFailed.classList.toggle("animate__fadeIn");
+
+                        setTimeout(function () {
+                            regFailed.classList.toggle("animate__fadeIn");
+                            regFailed.classList.toggle("animate__fadeOut");
+                        }, 3000);
+                        setTimeout(function () {
+                            regFailed.classList.add("d-none");
+                        }, 4000);
+                        setTimeout(function () {
+                            document.getElementById("btnReg").removeAttribute("disabled");
+                        }, 4500);
+                        document.getElementById("regPword").value = "";
+                    }
                 }
-            });
-        });
-    });
-</script>
-
+            };
+            xhr.open("POST", "/auth/reg", true);
+            xhr.setRequestHeader(
+                "Content-Type",
+                "application/x-www-form-urlencoded; charset=UTF-8"
+            );
+            xhr.send("uname=" + uname + "email="+ email + "&pword=" + pword);
+        };
+    </script>
 </body>
 
 </html>
