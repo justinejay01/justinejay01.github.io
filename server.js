@@ -165,6 +165,7 @@ app.post('/auth/reg', function (req, res) {
                 res.send('1');
               } else {
                 res.send('0');
+                console.log(resu);
               }
             })
             .catch(err =>
