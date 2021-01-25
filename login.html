@@ -54,6 +54,54 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.0.0-beta1/js/bootstrap.bundle.min.js" integrity="sha512-q2vREMvON/xrz1KuOj5QKWmdvcHtM4XNbNer+Qbf4TOj+RMDnul0Fg3VmmYprdf3fnL1gZgzKhZszsp62r5Ugg==" crossorigin="anonymous"></script>
 
 <script>
+    document.getElementById('formLogin').onsubmit = function () {
+        var uname = document.getElementById('loginUname').value;
+        var pword = document.getElementById('loginPword').value;
+
+        var xhr = new XMLHttpRequest();
+        xhr.onreadystatechange = function () {
+            if (this.readyState == 4 && this.status == 200) {
+                if (data == '1') {
+                    var loginSuccess = document.getElementById('loginSuccess');
+                    loginSuccess.classList.remove('d-none');
+                    loginSuccess.classList.add('animate__fadeIn');
+                    
+                    document.getElementById('btnLogin').setAttribute('disabled','');
+
+                    setTimeout( function() {
+                        window.location.replace('/');
+                    }, 3000);
+                } else {
+                    var loginFailed = document.getElementById('loginFailed');
+                    loginFailed.classList.remove('d-none');
+                    
+                    document.getElementById('btnLogin').setAttribute('disabled','');
+
+                    if (loginFailed.classList.contains('animate__fadeOut')) {
+                        loginFailed.classList.toggle('animate__fadeOut');
+                    }
+
+                    loginFailed.classList.toggle('animate__fadeIn');
+
+                    setTimeout( function() {
+                        loginFailed.classList.toggle('animate__fadeIn');
+                        loginFailed.classList.toggle('animate__fadeOut');
+                    }, 3000);
+                    setTimeout( function() {
+                        loginFailed.classList.add('d-none');
+                    }, 4000);
+                    setTimeout( function() {
+                        document.getElementById('btnLogin').removeAttribute('disabled');
+                    }, 4500);
+                    document.getElementById('loginPword').value = '';
+                }
+            }
+        }
+        xhr.open('POST', '/auth/login', true);
+        xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded; charset=UTF-8');
+        xhr.send('uname='+uname+'&pword='+pword);
+    }
+    /*
     $(document).ready(function(){
         $("#formLogin").submit(function(){
             $.post("/auth/login",
@@ -98,7 +146,7 @@
                 }
             });
         });
-    });
+    });*/
 </script>
 
 </body>
