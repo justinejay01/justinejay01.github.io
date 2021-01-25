@@ -10,7 +10,23 @@
 
   <title>Log In - SimpingTech</title>
 
-  <link href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.5.3/css/bootstrap.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.0.0-beta1/css/bootstrap.min.css" integrity="sha512-thoh2veB35ojlAhyYZC0eaztTAUhxLvSZlWrNtlV01njqs/UdY3421Jg7lX0Gq9SRdGVQeL8xeBp9x1IPyL1wQ==" crossorigin="anonymous" />
+  
+  <style>
+    .showFI {
+        transition: opacity 400ms;
+    }
+    .hideFI {
+        opacity: 0;
+    }
+    .showFO {
+        opacity: 1;
+    }
+    .hideFO {
+        opacity: 0;
+        transition: opacity 400ms;
+    }
+  </style>
 
 </head>
 
@@ -27,7 +43,7 @@
                 <form id="formLogin" action="javascript:void(0);" method="post">
                     <div class="card-body">
                         <div class="alert alert-success d-none" id="loginSuccess">
-                            Logging in...
+                            Logging in... Click <a href="/">here</a> if you're not redirected!
                         </div>
                         <div class="alert alert-danger d-none" id="loginFailed">
                             Incorrect login credentials! 
@@ -48,7 +64,7 @@
 </div>
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.5.3/js/bootstrap.bundle.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.0.0-beta1/js/bootstrap.bundle.min.js" integrity="sha512-q2vREMvON/xrz1KuOj5QKWmdvcHtM4XNbNer+Qbf4TOj+RMDnul0Fg3VmmYprdf3fnL1gZgzKhZszsp62r5Ugg==" crossorigin="anonymous"></script>
 
 <script>
     $(document).ready(function(){
@@ -60,43 +76,23 @@
                 },
             function(data){
                 if (data == '1') {
-                    /*
-                    var divAlert = document.createElement('div');
-                    var divAlertAttr = document.createAttribute('class');
-                    divAlertAttr.value = 'alert alert-success';
-                    divAlert.setAttributeNode(divAlertAttr);
-                    var nodeAlert = document.createTextNode('Logging in...');
-                    divAlert.appendChild(nodeAlert);
-
-                    var alertLogin = document.getElementById('alertLogin');
-                    alertLogin.appendChild(divAlert);
-                    */
-                    
-                    document.getElementById('loginSuccess').classList.remove('d-none');
+                    var loginSuccess = document.getElementById('loginSuccess');
+                    loginSuccess.classList.remove('d-none');
+                    loginSuccess.classList.add('showFI');
+                    loginSuccess.classList.remove('showFI');
                     
                     setTimeout( function() {
                         window.location.replace('/');
                     }, 3000);
                 } else {
-                    /*
-                    var divAlert = document.createElement('div');
-                    var divAlertAttr = document.createAttribute('class');
-                    divAlertAttr.value = 'alert alert-danger';
-                    divAlert.setAttributeNode(divAlertAttr);
-                    var nodeAlert = document.createTextNode('Incorrect login credentials!');
-                    divAlert.appendChild(nodeAlert);
+                    var loginFailed = document.getElementById('loginFailed');
+                    loginFailed.classList.remove('d-none');
+                    loginFailed.classList.add('showFI');
+                    loginFailed.classList.remove('showFI');
 
-                    var alertLogin = document.getElementById('alertLogin');
-                    alertLogin.appendChild(divAlert);
-                    */
-
-                    document.getElementById('loginFailed').classList.remove('d-none');
-                    $("#loginFailed").fadeOut(2000);
                     setTimeout( function() {
-                        document.getElementById('loginFailed').classList.add('d-none');
-                        $("#loginFailed").fadeIn();
+                        loginFailed.classList.add('d-none');
                     }, 3000);
-
                     document.getElementById('loginUname').value = '';
                     document.getElementById('loginPword').value = '';
                 }
