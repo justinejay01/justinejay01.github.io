@@ -10,24 +10,8 @@
 
   <title>Log In - SimpingTech</title>
 
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css" integrity="sha512-c42qTSw/wPZ3/5LBzD+Bw5f7bSF2oxou6wEb+I/lqeaKV5FDIfMvvRp772y4jcJLKuGUOpbJMdg/BTl50fJYAw==" crossorigin="anonymous" />
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.0.0-beta1/css/bootstrap.min.css" integrity="sha512-thoh2veB35ojlAhyYZC0eaztTAUhxLvSZlWrNtlV01njqs/UdY3421Jg7lX0Gq9SRdGVQeL8xeBp9x1IPyL1wQ==" crossorigin="anonymous" />
-  
-  <style>
-    .showFI {
-        transition: opacity 400ms;
-    }
-    .hideFI {
-        opacity: 0;
-    }
-    .showFO {
-        opacity: 1;
-    }
-    .hideFO {
-        opacity: 0;
-        transition: opacity 400ms;
-    }
-  </style>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css" integrity="sha512-c42qTSw/wPZ3/5LBzD+Bw5f7bSF2oxou6wEb+I/lqeaKV5FDIfMvvRp772y4jcJLKuGUOpbJMdg/BTl50fJYAw==" crossorigin="anonymous" />
 
 </head>
 
@@ -43,10 +27,10 @@
                 </div>
                 <form id="formLogin" action="javascript:void(0);" method="post">
                     <div class="card-body">
-                        <div class="alert alert-success d-none" id="loginSuccess">
+                        <div class="alert alert-success animate__animated d-none" id="loginSuccess">
                             Logging in... Click <a href="/">here</a> if you're not redirected!
                         </div>
-                        <div class="alert alert-danger d-none" id="loginFailed">
+                        <div class="alert alert-danger animate__animated d-none" id="loginFailed">
                             Incorrect login credentials! 
                         </div>
                         <label for="loginUname">Username</label>
