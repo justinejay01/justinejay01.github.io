@@ -67,7 +67,7 @@
                     loginSuccess.classList.remove('d-none');
                     loginSuccess.classList.add('animate__fadeIn');
                     
-                    document.getElementById('btnLogin').setAttribute('disabled');
+                    document.getElementById('btnLogin').setAttribute('disabled','');
 
                     setTimeout( function() {
                         window.location.replace('/');
@@ -76,7 +76,7 @@
                     var loginFailed = document.getElementById('loginFailed');
                     loginFailed.classList.remove('d-none');
                     
-                    document.getElementById('btnLogin').setAttribute('disabled');
+                    document.getElementById('btnLogin').setAttribute('disabled','');
 
                     if (loginFailed.classList.contains('animate__fadeOut')) {
                         loginFailed.classList.toggle('animate__fadeOut');
