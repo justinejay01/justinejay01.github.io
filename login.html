@@ -24,22 +24,24 @@
                 <div class="card-header">
                     <h4 class="card-title">Log In</h4>
                 </div>
-                <div class="card-body">
-                    <div class="alert alert-success d-none" id="loginSuccess">
-                        Logging in...
+                <form id="formLogin" method="post">
+                    <div class="card-body">
+                        <div class="alert alert-success d-none" id="loginSuccess">
+                            Logging in...
+                        </div>
+                        <div class="alert alert-danger d-none" id="loginFailed">
+                            Incorrect login credentials! 
+                        </div>
+                        <label for="loginUname">Username</label>
+                        <input class="form-control" type="text" id="loginUname" name="uname" placeholder="Enter username..." required> <br>
+                        <label for="loginPword">Password</label>
+                        <input class="form-control" type="password" id="loginPword" name="pword" placeholder="Enter password..." required>
                     </div>
-                    <div class="alert alert-danger d-none" id="loginFailed">
-                        Incorrect login credentials! 
+                    <div class="card-footer">
+                        <input type="submit" class="btn btn-primary btn-block" id="login" value="Log In"><hr>
+                        <input type="button" class="btn btn-success btn-block" value="Register">
                     </div>
-                    <label for="loginUname">Username</label>
-                    <input class="form-control" type="text" id="loginUname" name="uname" placeholder="Enter username..." required> <br>
-                    <label for="loginPword">Password</label>
-                    <input class="form-control" type="password" id="loginPword" name="pword" placeholder="Enter password..." required>
-                </div>
-                <div class="card-footer">
-                    <button class="btn btn-primary btn-block" id="login">Log In</button> <hr>
-                    <button class="btn btn-success btn-block">Sign Up</button>
-                </div>
+                </form>
             </div>
         </div>
     </div>
@@ -50,7 +52,7 @@
 
 <script>
     $(document).ready(function(){
-        $("#login").click(function(){
+        $("#formLogin").submit(function(){
             $.post("/auth/login",
                 {
                     uname: document.getElementById('loginUname').value,
@@ -89,8 +91,10 @@
                     */
 
                     document.getElementById('loginFailed').classList.remove('d-none');
+                    $("#loginFailed").fadeOut(2000);
                     setTimeout( function() {
                         document.getElementById('loginFailed').classList.add('d-none');
+                        $("#loginFailed").fadeIn();
                     }, 3000);
 
                     document.getElementById('loginUname').value = '';
