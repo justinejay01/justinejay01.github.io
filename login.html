@@ -10,6 +10,7 @@
 
   <title>Log In - SimpingTech</title>
 
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css" integrity="sha512-c42qTSw/wPZ3/5LBzD+Bw5f7bSF2oxou6wEb+I/lqeaKV5FDIfMvvRp772y4jcJLKuGUOpbJMdg/BTl50fJYAw==" crossorigin="anonymous" />
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.0.0-beta1/css/bootstrap.min.css" integrity="sha512-thoh2veB35ojlAhyYZC0eaztTAUhxLvSZlWrNtlV01njqs/UdY3421Jg7lX0Gq9SRdGVQeL8xeBp9x1IPyL1wQ==" crossorigin="anonymous" />
   
   <style>
@@ -54,8 +55,10 @@
                         <input class="form-control" type="password" id="loginPword" name="pword" placeholder="Enter password..." required>
                     </div>
                     <div class="card-footer">
-                        <input type="submit" class="btn btn-primary btn-block" id="login" value="Log In"><hr>
-                        <input type="button" class="btn btn-success btn-block" value="Register">
+                        <div class="d-grid gap-2">
+                            <input type="submit" class="btn btn-primary btn-block" id="login" value="Log In"><hr>
+                            <input type="button" class="btn btn-success btn-block" value="Register">
+                        </div>
                     </div>
                 </form>
             </div>
@@ -63,7 +66,6 @@
     </div>
 </div>
 
-<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.0.0-beta1/js/bootstrap.bundle.min.js" integrity="sha512-q2vREMvON/xrz1KuOj5QKWmdvcHtM4XNbNer+Qbf4TOj+RMDnul0Fg3VmmYprdf3fnL1gZgzKhZszsp62r5Ugg==" crossorigin="anonymous"></script>
 
 <script>
@@ -78,8 +80,7 @@
                 if (data == '1') {
                     var loginSuccess = document.getElementById('loginSuccess');
                     loginSuccess.classList.remove('d-none');
-                    loginSuccess.classList.add('showFI');
-                    loginSuccess.classList.remove('hideFI');
+                    loginSuccess.classList.add('animate__fadeIn');
                     
                     setTimeout( function() {
                         window.location.replace('/');
@@ -87,11 +88,17 @@
                 } else {
                     var loginFailed = document.getElementById('loginFailed');
                     loginFailed.classList.remove('d-none');
-                    loginFailed.classList.add('showFI');
-                    loginFailed.classList.remove('hideFI');
+                    
+                    if (loginFailed.classList.contains('animate__fadeOut')) {
+                        loginFailed.classList.remove('animate__fadeOut');
+                    }
+
+                    loginFailed.classList.add('animate__fadeIn');
 
                     setTimeout( function() {
                         loginFailed.classList.add('d-none');
+                        loginFailed.classList.remove('animate__fadeIn');
+                        loginFailed.classList.add('animate__fadeOut');
                     }, 3000);
                     document.getElementById('loginUname').value = '';
                     document.getElementById('loginPword').value = '';
