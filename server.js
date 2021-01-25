@@ -31,6 +31,9 @@ app.use(session({
 }));
 */
 
+app.use(parser.json());
+app.use(parser.urlencoded({ extended: true }));
+
 app.use(session({
   cookie: { maxAge: 86400000 },
   store: new MemoryStore({
@@ -40,9 +43,6 @@ app.use(session({
   secret: 'secret',
 	saveUninitialized: true
 }))
-
-app.use(parser.json());
-app.use(parser.urlencoded({ extended: true }));
 
 app.get('/', function(req,res) {
   if (req.session.loggedin) {
