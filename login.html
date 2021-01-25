@@ -75,18 +75,17 @@
                     loginFailed.classList.remove('d-none');
                     
                     if (loginFailed.classList.contains('animate__fadeOut')) {
-                        loginFailed.classList.remove('animate__fadeOut');
+                        loginFailed.classList.toggle('animate__fadeOut');
                     }
 
-                    loginFailed.classList.add('animate__fadeIn');
+                    loginFailed.classList.toggle('animate__fadeIn');
 
                     setTimeout( function() {
+                        loginFailed.classList.toggle('animate__fadeIn');
+                        loginFailed.classList.toggle('animate__fadeOut');
                         loginFailed.classList.add('d-none');
-                        loginFailed.classList.remove('animate__fadeIn');
-                        loginFailed.classList.add('animate__fadeOut');
                     }, 3000);
                     document.getElementById('loginUname').value = '';
-                    document.getElementById('loginPword').value = '';
                 }
             });
         });
