@@ -79,7 +79,7 @@
                     var loginSuccess = document.getElementById('loginSuccess');
                     loginSuccess.classList.remove('d-none');
                     loginSuccess.classList.add('showFI');
-                    loginSuccess.classList.remove('showFI');
+                    loginSuccess.classList.remove('hideFI');
                     
                     setTimeout( function() {
                         window.location.replace('/');
@@ -88,7 +88,7 @@
                     var loginFailed = document.getElementById('loginFailed');
                     loginFailed.classList.remove('d-none');
                     loginFailed.classList.add('showFI');
-                    loginFailed.classList.remove('showFI');
+                    loginFailed.classList.remove('hideFI');
 
                     setTimeout( function() {
                         loginFailed.classList.add('d-none');
