@@ -143,7 +143,7 @@ app.post('/auth/reg', function (req, res) {
   var email = req.body.email;
   var pword = req.body.pword;
 
-  if (uname && pword && email) {
+  if (uname > 0 && pword > 0 && email > 0) {
     pool
       .query('SELECT count(uname) FROM users.auth where uname = $1', [uname])
       .then(resu => {
