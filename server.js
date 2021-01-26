@@ -168,16 +168,17 @@ app.post("/auth/reg", function (req, res) {
         parseJsonAsync(JSON.stringify(jsonObj)).then(jsonData => console.log(jsonData.count[0]));
         */
         if (resu.rowCount != 0) {
-          res.send("2");
+          res.send(jsonStr);
         } else {
           pool
             .query(
               "INSERT INTO users.auth (id,uname,pword,email,role) values (0,$1,$2,$3,$4)",
               [uname, pword, email, "user"]
             )
-            .then((resu) => {
-              console.log("A"+resu.rowCount);
-              res.send(resu.rowCount);
+            .then((resul) => {
+              var jsonStrfy = JSON.stringify(resul.rows[0]);
+              //console.log("A"+jsonStrfy);
+              res.send(jsonStrfy);
             })
             .catch((err) =>
               setImmediate(() => {

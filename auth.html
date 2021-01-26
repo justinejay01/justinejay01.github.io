@@ -235,7 +235,8 @@
             var xhr = new XMLHttpRequest();
             xhr.onreadystatechange = function () {
                 if (this.readyState == 4 && this.status == 200) {
-                    if (this.responseText == "1") {
+                    var obj = JSON.parse(this.responseText);
+                    if (obj.count == "1") {
                         var regSuccess = document.getElementById("regSuccess");
                         regSuccess.classList.remove("d-none");
                         regSuccess.classList.add("animate__fadeIn");
@@ -245,7 +246,7 @@
                         setTimeout(function () {
                             window.location.replace("/");
                         }, 3000);
-                    } else if (this.responseText == "2") {
+                    } else if (obj.count == "2") {
                         var regExist = document.getElementById("regExist");
                         regExist.classList.remove("d-none");
 
