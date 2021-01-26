@@ -160,8 +160,7 @@ app.post("/auth/reg", function (req, res) {
     pool
       .query("SELECT count(uname) FROM users.auth where uname = $1", [uname])
       .then((resu) => {
-        console.log(resu);
-        if (resu.rows[0] != 0) {
+        if (resu.rowCount != 0) {
           res.send("2");
         } else {
           pool
@@ -170,7 +169,7 @@ app.post("/auth/reg", function (req, res) {
               [uname, pword, email, "user"]
             )
             .then((resu) => {
-              res.send(resu.rows[0]);
+              res.send(resu.rowCount);
             })
             .catch((err) =>
               setImmediate(() => {
