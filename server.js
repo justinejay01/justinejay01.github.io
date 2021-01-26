@@ -6,6 +6,7 @@ const { Pool, Client } = require("pg");
 const path = require("path");
 //const mysql = require('mysql');
 const parser = require("body-parser");
+const rparser = require('really-relaxed-json').createParser();
 const express = require("express");
 const session = require("express-session");
 const MemoryStore = require("memorystore")(session);
@@ -160,7 +161,8 @@ app.post("/auth/reg", function (req, res) {
     pool
       .query("SELECT count(uname) FROM users.auth where uname = $1", [uname])
       .then((resu) => {
-        parseJsonAsync(JSON.stringify(resu.rows)).then(jsonData => console.log(jsonData.count[0]));
+        var jsonObj = rparser.stringToJson(resu.rows);
+        parseJsonAsync(JSON.stringify(jsonObj)).then(jsonData => console.log(jsonData.count[0]));
         if (resu.rowCount != 0) {
           res.send("2");
         } else {
