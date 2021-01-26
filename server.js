@@ -162,7 +162,7 @@ app.post("/auth/reg", function (req, res) {
       .query("SELECT count(uname) FROM users.auth where uname = $1", [uname])
       .then((resu) => {
         var jsonStr = JSON.stringify(resu.rows[0]);
-        console.log(jsonStr.count);
+        console.log(jsonStr);
         /*
         var jsonObj = rparser.stringToJson(resu.rows);
         parseJsonAsync(JSON.stringify(jsonObj)).then(jsonData => console.log(jsonData.count[0]));
