@@ -148,7 +148,8 @@ app.post('/auth/reg', function (req, res) {
       .query('SELECT count(uname) FROM users.auth where uname = $1', [uname])
       .then(resu => {
         //res.send(resu.rows[0]);
-        if (resu.rows[0] != 0) {
+        var cnt = JSON.parse(resu.rows[0]);
+        if (cnt.count != 0) {
           res.send('2');
         } else {
           pool

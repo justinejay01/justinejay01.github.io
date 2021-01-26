@@ -240,7 +240,7 @@
                         regSuccess.classList.remove("d-none");
                         regSuccess.classList.add("animate__fadeIn");
 
-                        document.getElementById("btnReg").setAttribute("disabled", "");
+                        document.getElementById("btnregReg").setAttribute("disabled", "");
 
                         setTimeout(function () {
                             window.location.replace("/");
@@ -249,7 +249,7 @@
                         var regExist = document.getElementById("regExist");
                         regExist.classList.remove("d-none");
 
-                        document.getElementById("btnReg").setAttribute("disabled", "");
+                        document.getElementById("btnregReg").setAttribute("disabled", "");
 
                         if (regExist.classList.contains("animate__fadeOut")) {
                             regExist.classList.toggle("animate__fadeOut");
@@ -265,7 +265,7 @@
                             regExist.classList.add("d-none");
                         }, 4000);
                         setTimeout(function () {
-                            document.getElementById("btnReg").removeAttribute("disabled");
+                            document.getElementById("btnregReg").removeAttribute("disabled");
                         }, 4500);
                         document.getElementById("regPword").value = "";
                     } else {
