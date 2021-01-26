@@ -153,12 +153,7 @@ app.post('/auth/reg', function (req, res) {
           pool
             .query('INSERT INTO users.auth (id,uname,pword,email,role) values (0,$1,$2,$3,$4)', [uname,pword,email,'user'])
             .then(resu => {
-              if (resu.rowCount != 0) {
-                res.send('1');
-              } else {
-                res.send('0');
-                console.log(resu);
-              }
+              console.log(resu.rows[0]);
             })
             .catch(err =>
               setImmediate(() => {
