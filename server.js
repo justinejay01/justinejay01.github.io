@@ -157,6 +157,7 @@ app.post('/auth/reg', function (req, res) {
             })
             .catch(err =>
               setImmediate(() => {
+                console.log(err);
                 throw err
               })
             )
@@ -164,6 +165,7 @@ app.post('/auth/reg', function (req, res) {
       })
       .catch(err =>
         setImmediate(() => {
+          console.log(err);
           throw err
         })
       )
