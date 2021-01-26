@@ -161,6 +161,7 @@ app.post("/auth/reg", function (req, res) {
       .query("SELECT count(uname) FROM users.auth where uname = $1", [uname])
       .then((resu) => {
         if (resu.rowCount != 0) {
+          console.log(resu.rowCount);
           res.send("2");
         } else {
           pool
@@ -169,6 +170,7 @@ app.post("/auth/reg", function (req, res) {
               [uname, pword, email, "user"]
             )
             .then((resu) => {
+              console.log("A"+resu.rowCount);
               res.send(resu.rowCount);
             })
             .catch((err) =>
