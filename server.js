@@ -157,43 +157,17 @@ app.post("/auth/reg", function (req, res) {
   var email = req.body.email;
   var pword = req.body.pword;
 
+  
   if (uname && pword && email) {
-    pool
-      .query("SELECT count(uname) FROM users.auth where uname = $1", [uname])
-      .then((resu) => {
-        var jsonStr = JSON.stringify(resu.rows[0]);
-        console.log(jsonStr);
-        /*
-        var jsonObj = rparser.stringToJson(resu.rows);
-        parseJsonAsync(JSON.stringify(jsonObj)).then(jsonData => console.log(jsonData.count[0]));
-        */
-        if (resu.rowCount != 0) {
-          res.send(jsonStr);
-        } else {
-          pool
-            .query(
-              "INSERT INTO users.auth (id,uname,pword,email,role) values (0,$1,$2,$3,$4)",
-              [uname, pword, email, "user"]
-            )
-            .then((resul) => {
-              var jsonStrfy = JSON.stringify(resul.rows[0]);
-              //console.log("A"+jsonStrfy);
-              res.send(jsonStrfy);
-            })
-            .catch((err) =>
-              setImmediate(() => {
-                console.log(err);
-                throw err;
-              })
-            );
-        }
+    ;(async () => {
+      const { rows } = await pool.query("SELECT count(uname) FROM users.auth where uname = $1", [uname])
+      var jsonStr = JSON.stringify(rows[0]);
+      console.log(jsonStr.count);
+    })().catch(err =>
+      setImmediate(() => {
+        throw err
       })
-      .catch((err) =>
-        setImmediate(() => {
-          console.log(err);
-          throw err;
-        })
-      );
+    )
   } else {
     res.send("Please enter username and/or password!");
     res.end();
@@ -220,4 +194,42 @@ app.get('/vt', function(req,res){
     else res.send('True');
   });
 });
+
+
+pool
+      .query("SELECT count(uname) FROM users.auth where uname = $1", [uname])
+      .then((resu) => {
+        var jsonStr = JSON.stringify(resu.rows[0]);
+        console.log(jsonStr);
+        /*
+        var jsonObj = rparser.stringToJson(resu.rows);
+        parseJsonAsync(JSON.stringify(jsonObj)).then(jsonData => console.log(jsonData.count[0]));
+
+       if (resu.rowCount != 0) {
+        res.send(jsonStr);
+      } else {
+        pool
+          .query(
+            "INSERT INTO users.auth (id,uname,pword,email,role) values (0,$1,$2,$3,$4)",
+            [uname, pword, email, "user"]
+          )
+          .then((resul) => {
+            var jsonStrfy = JSON.stringify(resul.rows[0]);
+            //console.log("A"+jsonStrfy);
+            res.send(jsonStrfy);
+          })
+          .catch((err) =>
+            setImmediate(() => {
+              console.log(err);
+              throw err;
+            })
+          );
+      }
+    })
+    .catch((err) =>
+      setImmediate(() => {
+        console.log(err);
+        throw err;
+      })
+    );
 */
