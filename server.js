@@ -161,7 +161,8 @@ app.post("/auth/reg", function (req, res) {
     pool
       .query("SELECT count(uname) FROM users.auth where uname = $1", [uname])
       .then((resu) => {
-        console.log(resu.rows[0]);
+        var jsonStr = JSON.stringify(resu.rows[0]);
+        console.log(jsonStr);
         /*
         var jsonObj = rparser.stringToJson(resu.rows);
         parseJsonAsync(JSON.stringify(jsonObj)).then(jsonData => console.log(jsonData.count[0]));
