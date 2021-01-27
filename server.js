@@ -156,7 +156,7 @@ app.post("/auth/reg", function (req, res) {
       var jsonStr = JSON.stringify(rows[0]);
       var obj = parse(jsonStr);
       console.log(obj.count);
-      res.send(''+obj.count);
+      res.send(obj.count.toString());
     })().catch(err =>
       setImmediate(() => {
         throw err
