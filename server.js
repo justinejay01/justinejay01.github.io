@@ -6,7 +6,7 @@ const { Pool, Client } = require("pg");
 const path = require("path");
 //const mysql = require('mysql');
 const parser = require("body-parser");
-const rparser = require('really-relaxed-json').createParser();
+const { parse } = require('comment-json');
 const express = require("express");
 const session = require("express-session");
 const MemoryStore = require("memorystore")(session);
@@ -46,14 +46,6 @@ app.use(
     saveUninitialized: true,
   })
 );
-
-const parseJsonAsync = (jsonString) => {
-  return new Promise((resolve) => {
-    setTimeout(() => {
-      resolve(JSON.parse(jsonString));
-    });
-  });
-};
 
 app.get("/", function (req, res) {
   if (req.session.loggedin) {
@@ -162,12 +154,14 @@ app.post("/auth/reg", function (req, res) {
     ;(async () => {
       const { rows } = await pool.query("SELECT count(uname) FROM users.auth where uname = $1", [uname])
       var jsonStr = JSON.stringify(rows[0]);
-      console.log(jsonStr);
+      var obj = parse(jsonStr);
+      console.log(obj.count);
     })().catch(err =>
       setImmediate(() => {
         throw err
       })
     )
+    res.end();
   } else {
     res.send("Please enter username and/or password!");
     res.end();

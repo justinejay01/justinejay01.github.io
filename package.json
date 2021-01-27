@@ -22,7 +22,7 @@
     "express-session": "^1.17.1",
     "memorystore": "^1.6.4",
     "pg": "^8.5.1",
-    "really-relaxed-json": "^0.2.24"
+    "comment-json": "^4.1.0"
   },
   "engines": {
     "node": "12.x"
