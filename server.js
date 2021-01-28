@@ -159,23 +159,24 @@ app.post("/auth/reg", function (req, res) {
   var email = req.body.email;
   var pword = req.body.pword;
 
-  
   if (uname && pword && email) {
-    ;(async () => {
-      const { rows } = await pool.query("SELECT count(uname) FROM users.auth where uname = $1", [uname])
-      var jsonStr = JSON.stringify(rows[0]);
-      var obj = JSON.parse(jsonStr);
-      var result = obj.count.toString();
-      console.log(result);
-      
-      var jsonResponse = {"response":result};
-      res.send(jsonResponse);
+    pool
+      .query("SELECT count(uname) FROM users.auth where uname = $1", [uname])
+      .then(res => {
+        var jsonStr = JSON.stringify(res.rows[0]);
+        var obj = JSON.parse(jsonStr);
+        var result = obj.count.toString();
+        console.log(result);
 
-    })().catch(err =>
-      setImmediate(() => {
-        throw err
+        var jsonResponse = { "response": result };
+        res.send(jsonResponse);
       })
-    )
+      .catch(err =>
+        setImmediate(() => {
+          throw err
+        })
+      )
+      
     res.end();
   } else {
     res.send("Please enter username and/or password!");
