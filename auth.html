@@ -176,6 +176,12 @@
             gsap.from("#panelLogin", {duration: 1, x: -300, opacity: 0, scale: 1});
         }
 
+        function login() {
+            document.getElementById('panelLogin').classList.toggle('d-none');
+            document.getElementById('panelReg').classList.toggle('d-none');
+            gsap.from("#panelLogin", {duration: 1, x: -300, opacity: 0, scale: 1});
+        }
+
         document.getElementById("formLogin").onsubmit = function () {
             var uname = document.getElementById("loginUname").value;
             var pword = document.getElementById("loginPword").value;
@@ -190,9 +196,9 @@
 
                         document.getElementById("btnloginLogin").setAttribute("disabled", "");
 
-                        setTimeout(function () {
-                            window.location.replace("/");
-                        }, 3000);
+                        setImmediate(function () {
+                            login();
+                        });
                     } else {
                         var loginFailed = document.getElementById("loginFailed");
                         loginFailed.classList.remove("d-none");
@@ -235,7 +241,7 @@
             var xhr = new XMLHttpRequest();
             xhr.onreadystatechange = function () {
                 if (this.readyState == 4 && this.status == 200) {
-                    
+
                     if (this.responseText == "2") {
                         var regSuccess = document.getElementById("regSuccess");
                         regSuccess.classList.remove("d-none");
