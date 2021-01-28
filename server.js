@@ -164,7 +164,7 @@ app.post("/auth/reg", function (req, res) {
     ;(async () => {
       const { rows } = await pool.query("SELECT count(uname) FROM users.auth where uname = $1", [uname])
       var jsonStr = JSON.stringify(rows[0]);
-      var obj = parse(jsonStr);
+      var obj = JSON.parse(jsonStr);
       var result = obj.count.toString();
       console.log(result);
       
