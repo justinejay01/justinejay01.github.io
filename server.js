@@ -168,7 +168,9 @@ app.post("/auth/reg", function (req, res) {
       var result = obj.count.toString();
       console.log(result);
       //res.set('Content-Type', 'text/plain');
-      res.send(result+"smpt");
+      setTimeout(() => {
+        res.send(result+"smpt");
+      }, 1500);
 
     })().catch(err =>
       setImmediate(() => {
