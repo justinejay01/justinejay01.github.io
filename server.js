@@ -41,7 +41,7 @@ app.use(
 
 app.get("/", function (req, res) {
   if (req.session.loggedin) {
-    res.render("index", {uname: uname});
+    res.render("index", {uname: req.session.username});
   } else {
     res.redirect("/auth/");
   }
