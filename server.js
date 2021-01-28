@@ -87,6 +87,14 @@ app.get("/programs/csharp/lesson-7", function (req, res) {
   }
 });
 
+app.get("/programs/csharp/lesson-9", function (req, res) {
+  if (req.session.loggedin) {
+    res.sendFile("/programs/csharp/lesson-9.html", { root: __dirname });
+  } else {
+    res.redirect("/auth/");
+  }
+});
+
 app.get("/tools", function (req, res) {
   if (req.session.loggedin) {
     res.sendFile("/tools/index.html", { root: __dirname });
