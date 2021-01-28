@@ -175,9 +175,7 @@ app.post("/auth/reg", function (req, res) {
         setImmediate(() => {
           throw err
         })
-      )
-      
-    res.end();
+      );
   } else {
     res.send("Please enter username and/or password!");
     res.end();
