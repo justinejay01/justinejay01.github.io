@@ -18,12 +18,10 @@
     "socket.io" : "^2.3.0",
     "https-proxy-agent" : "^5.0.0",
     "jsonwebtoken" : "^8.5.1",
-    "mysql": "^2.18.1",
     "express-session": "^1.17.1",
     "memorystore": "^1.6.4",
     "pg": "^8.5.1",
-    "comment-json": "^4.1.0",
-    "cors": "^2.8.5"
+    "pug": "^3.0.0"
   },
   "engines": {
     "node": "12.x"

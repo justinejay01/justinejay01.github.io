@@ -4,9 +4,7 @@
 //const jwt = require('jsonwebtoken');
 const { Pool, Client } = require("pg");
 const path = require("path");
-//const mysql = require('mysql');
 const parser = require("body-parser");
-const { parse } = require('comment-json');
 const express = require("express");
 const session = require("express-session");
 const MemoryStore = require("memorystore")(session);
@@ -32,6 +30,9 @@ app.use(session({
   saveUninitialized: true
 }));
 */
+
+app.set("views", path.join(__dirname, "views"));
+app.set("view engine", "pug");
 
 app.use(parser.json());
 app.use(parser.urlencoded({ extended: true }));
@@ -116,7 +117,7 @@ app.get("/auth/", function (req, res) {
   if (req.session.loggedin) {
     res.redirect("/");
   } else {
-    res.sendFile("/auth.html", { root: __dirname });
+    res.render("auth");
   }
 });
 
