@@ -127,16 +127,20 @@ app.post("/auth/login", function (req, res) {
   var pword = req.body.pword;
 
   if (uname && pword) {
+    var sha256Hash = crypto.createHash('sha256');
+    var pwordData = sha256Hash.update(pword, 'utf-8');
+    var pwordHash = pwordData.digest('hex');
     pool
       .query("SELECT role FROM users.auth where uname = $1 and pword = $2", [
         uname,
-        pword,
+        pwordHash,
       ])
       .then((resu) => {
         if (resu.rows[0] != null) {
-          //var auth = JSON.parse(resu.rows[0]);
-          //console.log(auth.role);
-          //role = auth.role;
+          var jsonStr = JSON.stringify(resu.rows[0]);
+          var obj = JSON.parse(jsonStr);
+          var result = obj.count.toString();
+          role = result;
           req.session.loggedin = true;
           req.session.username = uname;
           res.send("1");
