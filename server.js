@@ -10,7 +10,6 @@ const { parse } = require('comment-json');
 const express = require("express");
 const session = require("express-session");
 const MemoryStore = require("memorystore")(session);
-const cors = require("cors");
 const crypto = require("crypto");
 const app = express();
 var role = null;
@@ -35,7 +34,6 @@ app.use(session({
 */
 
 app.use(parser.json());
-app.use(cors());
 app.use(parser.urlencoded({ extended: true }));
 
 app.use(
