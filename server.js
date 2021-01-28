@@ -165,7 +165,9 @@ app.post("/auth/reg", function (req, res) {
       var obj = parse(jsonStr);
       var result = obj.count.toString();
       console.log(result);
+      res.set('Content-Type', 'text/plain');
       res.send(result+"smpt");
+
     })().catch(err =>
       setImmediate(() => {
         throw err
