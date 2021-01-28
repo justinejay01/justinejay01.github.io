@@ -137,10 +137,12 @@ app.post("/auth/login", function (req, res) {
       ])
       .then((resu) => {
         if (resu.rows[0] != null) {
+          /*
           var jsonStr = JSON.stringify(resu.rows[0]);
           var obj = JSON.parse(jsonStr);
           var result = obj.count.toString();
           role = result;
+          */
           req.session.loggedin = true;
           req.session.username = uname;
           res.send("1");
