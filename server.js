@@ -10,6 +10,7 @@ const { parse } = require('comment-json');
 const express = require("express");
 const session = require("express-session");
 const MemoryStore = require("memorystore")(session);
+const cors = require("cors");
 const app = express();
 var role = null;
 
@@ -33,6 +34,7 @@ app.use(session({
 */
 
 app.use(parser.json());
+app.use(cors());
 app.use(parser.urlencoded({ extended: true }));
 
 app.use(
@@ -165,7 +167,7 @@ app.post("/auth/reg", function (req, res) {
       var obj = parse(jsonStr);
       var result = obj.count.toString();
       console.log(result);
-      res.set('Content-Type', 'text/plain');
+      //res.set('Content-Type', 'text/plain');
       res.send(result+"smpt");
 
     })().catch(err =>
