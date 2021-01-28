@@ -1,0 +1,7 @@
+body {
+  padding-top: 56px;
+}
+a.card-home,
+a.card-home:hover {
+  color: inherit;
+}

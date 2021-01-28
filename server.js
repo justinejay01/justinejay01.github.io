@@ -12,8 +12,6 @@ const crypto = require("crypto");
 const app = express();
 var role = null;
 
-//const server = http.createServer(app);
-
 const pool = new Pool({
   connectionString: process.env.DATABASE_URL,
   ssl: {
@@ -22,14 +20,6 @@ const pool = new Pool({
 });
 
 var portaccess = process.env.PORT || 8080;
-
-/*
-app.use(session({
-  secret: 'secret',
-  resave: true,
-  saveUninitialized: true
-}));
-*/
 
 app.set("views", path.join(__dirname, "views"));
 app.set("view engine", "pug");
@@ -51,7 +41,7 @@ app.use(
 
 app.get("/", function (req, res) {
   if (req.session.loggedin) {
-    res.sendFile("/index.html", { root: __dirname });
+    res.render("index", {uname: uname});
   } else {
     res.redirect("/auth/");
   }
