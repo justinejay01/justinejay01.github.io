@@ -166,8 +166,23 @@ app.post("/auth/reg", function (req, res) {
         var jsonStr = JSON.stringify(resu.rows[0]);
         var obj = JSON.parse(jsonStr);
         var result = obj.count.toString();
-        console.log(result);
-        res.send(result);
+        if (result == "1") {
+          console.log(result);
+          res.send(result);
+        } else {
+          pool
+            .query("INSERT INTO users.auth (id,uname,pword,email,role) values (0,$1,$2,$3,$4)",
+              [uname, pword, email, "user"])
+            .then(resul => {
+              res.send("2");
+            })
+            .catch(err =>
+              setImmediate(() => {
+                res.send("0");
+                throw err
+              })
+            );
+        }
       })
       .catch(err =>
         setImmediate(() => {
