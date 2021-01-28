@@ -11,6 +11,7 @@ const express = require("express");
 const session = require("express-session");
 const MemoryStore = require("memorystore")(session);
 const cors = require("cors");
+const crypto = require("crypto");
 const app = express();
 var role = null;
 
@@ -170,9 +171,12 @@ app.post("/auth/reg", function (req, res) {
           console.log(result);
           res.send(result);
         } else {
+          var sha256Hash = crypto.createHash('sha256');
+          var pwordData = sha256Hash.update(pword, 'utf-8');
+          var pwordHash = pwordData.digest('hex');
           pool
             .query("INSERT INTO users.auth (id,uname,pword,email,role) values (0,$1,$2,$3,$4)",
-              [uname, pword, email, "user"])
+              [uname, pwordHash, email, "user"])
             .then(resul => {
               res.send("2");
             })
