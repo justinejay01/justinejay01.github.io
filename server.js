@@ -167,7 +167,7 @@ app.post("/auth/reg", function (req, res) {
       var obj = parse(jsonStr);
       var result = obj.count.toString();
       console.log(result);
-      //res.set('Content-Type', 'text/plain');
+      res.set('Content-Type', 'text/plain');
       setTimeout(() => {
         res.send(result+"smpt");
       }, 1500);
