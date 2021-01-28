@@ -162,8 +162,8 @@ app.post("/auth/reg", function (req, res) {
   if (uname && pword && email) {
     pool
       .query("SELECT count(uname) FROM users.auth where uname = $1", [uname])
-      .then(res => {
-        var jsonStr = JSON.stringify(res.rows[0]);
+      .then(resu => {
+        var jsonStr = JSON.stringify(resu.rows[0]);
         var obj = JSON.parse(jsonStr);
         var result = obj.count.toString();
         console.log(result);
