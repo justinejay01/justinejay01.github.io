@@ -105,7 +105,7 @@ app.get("/tools/gdrive-linkgen", function (req, res) {
 
 app.get("/auth/", function (req, res) {
   if (req.session.loggedin) {
-    res.render("index", {uname: req.session.username});
+    res.redirect("/");
   } else {
     res.render("auth", {title: "Authentication"});
   }
