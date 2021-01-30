@@ -1,0 +1,15 @@
+html
+    head
+        meta(charset='utf-8')
+        meta(name='viewport' content='width=device-width, initial-scale=1, shrink-to-fit=no')
+        meta(name='description' content="We're simping to tech!")
+        meta(name='author' content='SimpingTech')
+        title #{title} - SimpingTech
+        link(href='https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.0.0-beta1/css/bootstrap.min.css' rel='stylesheet')
+        link(rel='stylesheet' href='/public/main.css')
+    body
+        block content
+        block footer
+        block script
+            script(src='https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.0.0-beta1/js/bootstrap.bundle.min.js' integrity='sha512-q2vREMvON/xrz1KuOj5QKWmdvcHtM4XNbNer+Qbf4TOj+RMDnul0Fg3VmmYprdf3fnL1gZgzKhZszsp62r5Ugg==' crossorigin='anonymous')
+            script(src='https://cdnjs.cloudflare.com/ajax/libs/gsap/3.6.0/gsap.min.js')

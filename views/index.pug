@@ -1,60 +1,54 @@
-doctype html
-head
-  meta(charset='utf-8')
-  meta(name='viewport' content='width=device-width, initial-scale=1, shrink-to-fit=no')
-  meta(name='description' content="We're simping to tech!")
-  meta(name='author' content='SimpingTech')
-  title Home - SimpingTech
-  link(href='https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.0.0-beta1/css/bootstrap.min.css' rel='stylesheet')
-  link(rel='stylesheet' href='/public/main.css')
-nav.navbar.navbar-expand-lg.navbar-dark.bg-dark.fixed-top
+extends layout
+
+block content
+  nav.navbar.navbar-expand-lg.navbar-dark.bg-dark.fixed-top
+    .container
+      a.navbar-brand(href='/') SimpingTech
+      button.navbar-toggler(type='button' data-toggle='collapse' data-target='#navbarResponsive' aria-controls='navbarResponsive' aria-expanded='false' aria-label='Toggle navigation')
+        span.navbar-toggler-icon
+      #navbarResponsive.collapse.navbar-collapse
+        ul.navbar-nav.ml-auto
+          li.nav-item.active
+            a.nav-link(href='#')
+              | Home
+              span.sr-only (current)
+          li.nav-item
+            a.nav-link(href='#') Services
+          li.nav-item
+            a.nav-link(href='#') About
+          li.nav-item
+            a.nav-link(href='#') Contact
   .container
-    a.navbar-brand(href='/') SimpingTech
-    button.navbar-toggler(type='button' data-toggle='collapse' data-target='#navbarResponsive' aria-controls='navbarResponsive' aria-expanded='false' aria-label='Toggle navigation')
-      span.navbar-toggler-icon
-    #navbarResponsive.collapse.navbar-collapse
-      ul.navbar-nav.ml-auto
-        li.nav-item.active
-          a.nav-link(href='#')
-            | Home
-            span.sr-only (current)
-        li.nav-item
-          a.nav-link(href='#') Services
-        li.nav-item
-          a.nav-link(href='#') About
-        li.nav-item
-          a.nav-link(href='#') Contact
-.container
-  .alert.alert-info.my-3(role='alert')
-    | This website is still under development stage so you may experience some or many errors. Thank you!
-  header.jumbotron.my-4
-    h2 Welcome to SimpingTech, #{uname}!
-    p.lead
-      | You&apos;re in the right place to find stuffs about tech! Tech tips, tech reviews, programming languages, tutorials about anything tech, even your homework (only about tech!). You can find it here &apos;cause we&apos;re simping to tech!
-  hr
-  .row.text-center
-    .col-lg-3.col-md-6.mb-4
-      a.card-home(href='/programs')
+    .alert.alert-info.my-3(role='alert')
+      | This website is still under development stage so you may experience some or many errors. Thank you!
+    header.jumbotron.my-4
+      h2 Welcome to SimpingTech, #{uname}!
+      p.lead
+        | You&apos;re in the right place to find stuffs about tech! Tech tips, tech reviews, programming languages, tutorials about anything tech, even your homework (only about tech!). You can find it here &apos;cause we&apos;re simping to tech!
+    hr
+    .row.text-center
+      .col-lg-3.col-md-6.mb-4
+        a.card-home(href='/programs')
+          .card.h-100
+            .card-body
+              h4.card-title Programs
+      .col-lg-3.col-md-6.mb-4
+        a.card-home(href='/tools')
+          .card.h-100
+            .card-body
+              h4.card-title Tools
+      .col-lg-3.col-md-6.mb-4
         .card.h-100
           .card-body
-            h4.card-title Programs
-    .col-lg-3.col-md-6.mb-4
-      a.card-home(href='/tools')
+            h4.card-title Coming Soon!
+      .col-lg-3.col-md-6.mb-4
         .card.h-100
           .card-body
-            h4.card-title Tools
-    .col-lg-3.col-md-6.mb-4
-      .card.h-100
-        .card-body
-          h4.card-title Coming Soon!
-    .col-lg-3.col-md-6.mb-4
-      .card.h-100
-        .card-body
-          h4.card-title Coming Soon!
-footer.py-4.bg-dark
-  .container
-    p.m-0.text-center.text-white
-      | Copyright 2021 &copy; 
-      a.text-white(href='/') SimpingTech
-script(src='https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.0.0-beta1/js/bootstrap.bundle.min.js' integrity='sha512-q2vREMvON/xrz1KuOj5QKWmdvcHtM4XNbNer+Qbf4TOj+RMDnul0Fg3VmmYprdf3fnL1gZgzKhZszsp62r5Ugg==' crossorigin='anonymous')
-script(src='https://cdnjs.cloudflare.com/ajax/libs/gsap/3.6.0/gsap.min.js')
+            h4.card-title Coming Soon!
+  
+block footer
+  footer.py-4.bg-dark
+    .container
+      p.m-0.text-center.text-white
+        | Copyright 2021 &copy; 
+        a.text-white(href='/') SimpingTech
