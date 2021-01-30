@@ -24,9 +24,9 @@ document.getElementById("formLogin").onsubmit = function () {
 
                 document.getElementById("btnloginLogin").setAttribute("disabled", "");
 
-                setImmediate(function () {
+                setTimeout(function () {
                     window.location.replace("/");
-                });
+                }, 3000);
             } else {
                 var loginFailed = document.getElementById("loginFailed");
                 loginFailed.classList.remove("d-none");
@@ -42,13 +42,13 @@ document.getElementById("formLogin").onsubmit = function () {
                 setTimeout(function () {
                     loginFailed.classList.toggle("animate__fadeIn");
                     loginFailed.classList.toggle("animate__fadeOut");
-                }, 3000);
+                }, 2500);
                 setTimeout(function () {
                     loginFailed.classList.add("d-none");
-                }, 4000);
+                }, 3000);
                 setTimeout(function () {
                     document.getElementById("btnloginLogin").removeAttribute("disabled");
-                }, 4500);
+                }, 3500);
                 document.getElementById("loginPword").value = "";
             }
         }
@@ -95,13 +95,13 @@ document.getElementById("formReg").onsubmit = function () {
                 setTimeout(function () {
                     regExist.classList.toggle("animate__fadeIn");
                     regExist.classList.toggle("animate__fadeOut");
-                }, 3000);
+                }, 2500);
                 setTimeout(function () {
                     regExist.classList.add("d-none");
-                }, 4000);
+                }, 3000);
                 setTimeout(function () {
                     document.getElementById("btnregReg").removeAttribute("disabled");
-                }, 4500);
+                }, 3500);
                 document.getElementById("regPword").value = "";
             } else {
                 var regFailed = document.getElementById("regFailed");
@@ -121,10 +121,10 @@ document.getElementById("formReg").onsubmit = function () {
                 }, 3000);
                 setTimeout(function () {
                     regFailed.classList.add("d-none");
-                }, 4000);
+                }, 3000);
                 setTimeout(function () {
                     document.getElementById("btnReg").removeAttribute("disabled");
-                }, 4500);
+                }, 3500);
                 document.getElementById("regPword").value = "";
             }
         }
