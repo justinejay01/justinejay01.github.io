@@ -3,7 +3,7 @@ extends layout
 block content
   nav.navbar.navbar-expand-lg.navbar-dark.bg-dark
     .container-fluid
-      a.navbar-brand(href='#') Navbar
+      a.navbar-brand(href='/') SimpingTech
       button.navbar-toggler(type='button' data-bs-toggle='collapse' data-bs-target='#navbarSupportedContent' aria-controls='navbarSupportedContent' aria-expanded='false' aria-label='Toggle navigation')
         span.navbar-toggler-icon
       #navbarSupportedContent.collapse.navbar-collapse
@@ -11,22 +11,13 @@ block content
           li.nav-item
             a.nav-link.active(aria-current='page' href='#') Home
           li.nav-item
-            a.nav-link(href='#') Link
-          li.nav-item.dropdown
-            a#navbarDropdown.nav-link.dropdown-toggle(href='#' role='button' data-bs-toggle='dropdown' aria-expanded='false')
-              | Dropdown
-              | 
-            ul.dropdown-menu(aria-labelledby='navbarDropdown')
-              li
-                a.dropdown-item(href='#') Action
-              li
-                a.dropdown-item(href='#') Another action
-              li
-                hr.dropdown-divider
-              li
-                a.dropdown-item(href='#') Something else here
+            a.nav-link(href='/programs') Programs
           li.nav-item
-            a.nav-link.disabled(href='#' tabindex='-1' aria-disabled='true') Disabled
+            a.nav-link(href='/tools') Tools
+          li.nav-item
+            a.nav-link.disabled(href='#' tabindex='-1' aria-disabled='true') Contact
+          li.nav-item
+            a.nav-link.disabled(href='#' tabindex='-1' aria-disabled='true') About
         ul.navbar-nav.d-flex
           li.nav-item.dropdown
             a#navbarDropdown.nav-link.dropdown-toggle(href='#' role='button' data-bs-toggle='dropdown' aria-expanded='false')
@@ -34,7 +25,7 @@ block content
               | 
             ul.dropdown-menu(aria-labelledby='navbarDropdown')
               li
-                a.dropdown-item(href='#') Logout
+                a.dropdown-item(href='/logout') Logout
   .container
     .alert.alert-info.my-3(role='alert')
       | This website is still under development stage so you may experience some or many errors. Thank you!

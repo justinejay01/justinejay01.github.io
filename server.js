@@ -111,6 +111,14 @@ app.get("/auth/", function (req, res) {
   }
 });
 
+app.get("/logout", function (req, res) {
+  var uname = req.session.username;
+  req.session.destroy(function(err) {
+    console.log(uname + ": Logout!");
+  });
+  res.redirect("/auth/");
+})
+
 app.post("/auth/login", function (req, res) {
   var uname = req.body.uname;
   var pword = req.body.pword;
@@ -134,6 +142,7 @@ app.post("/auth/login", function (req, res) {
           */
           req.session.loggedin = true;
           req.session.username = uname;
+          console.log(uname + ": Login!");
           res.send("1");
         } else {
           res.send("0");
@@ -173,6 +182,7 @@ app.post("/auth/reg", function (req, res) {
             .query("INSERT INTO users.auth (id,uname,pword,email,role) values (0,$1,$2,$3,$4)",
               [uname, pwordHash, email, "user"])
             .then(resul => {
+              console.log(uname + ": Register!");
               res.send("2");
             })
             .catch(err =>
