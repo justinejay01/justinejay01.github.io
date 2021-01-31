@@ -5,12 +5,12 @@ html
         meta(name='description' content="We're simping to tech!")
         meta(name='author' content='SimpingTech')
         title #{title} - SimpingTech
-        block style
+        block append style
             link(href='https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.0.0-beta1/css/bootstrap.min.css' rel='stylesheet')
             link(rel='stylesheet' href='/public/main.css')
     body
         block content
         block footer
-        block script
+        block append script
             script(src='https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.0.0-beta1/js/bootstrap.bundle.min.js')
             script(src='https://cdnjs.cloudflare.com/ajax/libs/gsap/3.6.0/gsap.min.js')
