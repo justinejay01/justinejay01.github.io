@@ -5,3 +5,8 @@ a.card-home,
 a.card-home:hover {
   color: inherit;
 }
+form {
+  margin: 0px;
+  padding: 0px;
+  display: inline;
+}
