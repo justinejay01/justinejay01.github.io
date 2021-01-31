@@ -31,7 +31,7 @@ document.getElementById("formLogin").onsubmit = function () {
                 var loginFailed = document.getElementById("loginFailed");
                 loginFailed.classList.remove("d-none");
 
-                document.getElementById("btnLogin").setAttribute("disabled", "");
+                document.getElementById("btnloginLogin").setAttribute("disabled", "");
 
                 if (loginFailed.classList.contains("animate__fadeOut")) {
                     loginFailed.classList.toggle("animate__fadeOut");
@@ -107,7 +107,7 @@ document.getElementById("formReg").onsubmit = function () {
                 var regFailed = document.getElementById("regFailed");
                 regFailed.classList.remove("d-none");
 
-                document.getElementById("btnReg").setAttribute("disabled", "");
+                document.getElementById("btnregReg").setAttribute("disabled", "");
 
                 if (regFailed.classList.contains("animate__fadeOut")) {
                     regFailed.classList.toggle("animate__fadeOut");
@@ -123,7 +123,7 @@ document.getElementById("formReg").onsubmit = function () {
                     regFailed.classList.add("d-none");
                 }, 3000);
                 setTimeout(function () {
-                    document.getElementById("btnReg").removeAttribute("disabled");
+                    document.getElementById("btnregReg").removeAttribute("disabled");
                 }, 3500);
                 document.getElementById("regPword").value = "";
             }
