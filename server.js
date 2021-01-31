@@ -10,7 +10,8 @@ const session = require("express-session");
 const MemoryStore = require("memorystore")(session);
 const crypto = require("crypto");
 const app = express();
-var role = null;
+var userRole = null;
+var userName = null;
 
 const pool = new Pool({
   connectionString: process.env.DATABASE_URL,
@@ -41,7 +42,7 @@ app.use(
 
 app.get("/", function (req, res) {
   if (req.session.loggedin) {
-    res.render("index", {title: "Home", uname: req.session.username});
+    res.render("index", {title: "Home", uname: req.session.username, name: userName});
   } else {
     res.redirect("/auth/");
   }
@@ -128,18 +129,21 @@ app.post("/auth/login", function (req, res) {
     var pwordData = sha256Hash.update(pword, 'utf-8');
     var pwordHash = pwordData.digest('hex');
     pool
-      .query("SELECT role FROM users.auth where uname = $1 and pword = $2", [
+      .query("SELECT fname, lname, role FROM users.auth where uname = $1 and pword = $2", [
         uname,
         pwordHash,
       ])
       .then((resu) => {
         if (resu.rows[0] != null) {
-          /*
+          
           var jsonStr = JSON.stringify(resu.rows[0]);
           var obj = JSON.parse(jsonStr);
-          var result = obj.count.toString();
-          role = result;
-          */
+          var objFname = obj.fname.toString();
+          var objLname = obj.lname.toString();
+          var objRole = obj.role.toString();
+          userRole = objRole;
+          userName = objFname + " " + objLname;
+          
           req.session.loggedin = true;
           req.session.username = uname;
           console.log(uname + ": Login!");
