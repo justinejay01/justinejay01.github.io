@@ -1,7 +1,7 @@
 extends layout
 
 block content
-  nav.navbar.navbar-expand-lg.navbar-light.bg-dark
+  nav.navbar.navbar-expand-lg.bg-dark
     .container-fluid
       a.navbar-brand(href='#') Navbar
       button.navbar-toggler(type='button' data-bs-toggle='collapse' data-bs-target='#navbarSupportedContent' aria-controls='navbarSupportedContent' aria-expanded='false' aria-label='Toggle navigation')
@@ -27,7 +27,7 @@ block content
                 a.dropdown-item(href='#') Something else here
           li.nav-item
             a.nav-link.disabled(href='#' tabindex='-1' aria-disabled='true') Disabled
-        form.d-flex
+        ul.navbar-nav.me-auto.mb-2.mb-lg-0.d-flex
           li.nav-item.dropdown
             a#navbarDropdown.nav-link.dropdown-toggle(href='#' role='button' data-bs-toggle='dropdown' aria-expanded='false')
               | Account
