@@ -62,6 +62,8 @@ document.getElementById("formLogin").onsubmit = function () {
 };
 
 document.getElementById("formReg").onsubmit = function () {
+    var fname = document.getElementById("regFname").value;
+    var lname = document.getElementById("regLname").value;
     var uname = document.getElementById("regUname").value;
     var email = document.getElementById("regEmail").value;
     var pword = document.getElementById("regPword").value;
@@ -69,7 +71,6 @@ document.getElementById("formReg").onsubmit = function () {
     var xhr = new XMLHttpRequest();
     xhr.onreadystatechange = function () {
         if (this.readyState == 4 && this.status == 200) {
-
             if (this.responseText == "2") {
                 var regSuccess = document.getElementById("regSuccess");
                 regSuccess.classList.remove("d-none");
@@ -134,5 +135,5 @@ document.getElementById("formReg").onsubmit = function () {
         "Content-Type",
         "application/x-www-form-urlencoded; charset=UTF-8"
     );
-    xhr.send("uname=" + uname + "&email=" + email + "&pword=" + pword);
+    xhr.send("uname=" + uname + "&fname=" + fname + "&lname=" + lname + "&email=" + email + "&pword=" + pword);
 };
