@@ -165,6 +165,8 @@ app.post("/auth/login", function (req, res) {
 });
 
 app.post("/auth/reg", function (req, res) {
+  var fname = req.body.fname;
+  var lname = req.body.lname;
   var uname = req.body.uname;
   var email = req.body.email;
   var pword = req.body.pword;
@@ -184,8 +186,8 @@ app.post("/auth/reg", function (req, res) {
           var pwordData = sha256Hash.update(pword, 'utf-8');
           var pwordHash = pwordData.digest('hex');
           pool
-            .query("INSERT INTO users.auth (id,uname,pword,email,role) values (0,$1,$2,$3,$4)",
-              [uname, pwordHash, email, "user"])
+            .query("INSERT INTO users.auth (id,fname,lname,uname,pword,email,role) values (0,$1,$2,$3,$4,$5,$6)",
+              [fname, lname, uname, pwordHash, email, "user"])
             .then(resul => {
               console.log(uname + ": Register!");
               res.send("2");
