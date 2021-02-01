@@ -137,6 +137,7 @@ app.post("/auth/login", function (req, res) {
         if (resu.rows[0] != null) {
           
           var jsonStr = JSON.stringify(resu.rows[0]);
+          console.log(jsonStr);
           var obj = JSON.parse(jsonStr);
           var objFname = obj.fname;
           var objLname = obj.lname;
