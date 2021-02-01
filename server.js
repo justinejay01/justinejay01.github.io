@@ -138,9 +138,9 @@ app.post("/auth/login", function (req, res) {
           
           var jsonStr = JSON.stringify(resu.rows[0]);
           var obj = JSON.parse(jsonStr);
-          var objFname = obj.fname.toString();
-          var objLname = obj.lname.toString();
-          var objRole = obj.role.toString();
+          var objFname = obj.fname;
+          var objLname = obj.lname;
+          var objRole = obj.role;
           userRole = objRole;
           userName = objFname + " " + objLname;
           
